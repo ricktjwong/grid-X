@@ -2,7 +2,7 @@
 
 	extern	UART_Setup, UART_Transmit_Message  ; external UART subroutines
 	extern  LCD_Setup, LCD_Write_Message, LCD_clear, LCD_row_shift	    ; external LCD subroutines
-	extern	table, draw_mapgrids
+	extern	table, draw_grids
 	
 acs0	udata_acs   ; reserve data space in access ram
 counter	    res 1   ; reserve one byte for a counter variable
@@ -27,7 +27,7 @@ setup	bcf	EECON1, CFGS	; point to Flash program memory
 	goto	start
 	
 	; ******* Main programme ****************************************
-start 	call	draw_mapgrids
+start 	call	draw_grids
 	call	button_press
 	lfsr	FSR0, myArray	; Load FSR0 with address in RAM	
 	movlw	upper(myTable)	; address of data in PM
