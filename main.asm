@@ -1,7 +1,8 @@
-	#include p18f87k22.inc
+#include p18f87k22.inc
 
 	extern	UART_Setup, UART_Transmit_Message  ; external UART subroutines
 	extern  LCD_Setup, LCD_Write_Message, LCD_clear, LCD_row_shift	    ; external LCD subroutines
+	extern	table, draw_mapgrids
 	
 acs0	udata_acs   ; reserve data space in access ram
 counter	    res 1   ; reserve one byte for a counter variable
@@ -23,11 +24,11 @@ main	code
 setup	bcf	EECON1, CFGS	; point to Flash program memory  
 	bsf	EECON1, EEPGD 	; access Flash program memory
 	call	UART_Setup	; setup UART
-	call	LCD_Setup	; setup LCD
 	goto	start
 	
 	; ******* Main programme ****************************************
-start 	call	button_press
+start 	call	draw_mapgrids
+	call	button_press
 	lfsr	FSR0, myArray	; Load FSR0 with address in RAM	
 	movlw	upper(myTable)	; address of data in PM
 	movwf	TBLPTRU		; load upper bits to TBLPTRU
@@ -37,21 +38,6 @@ start 	call	button_press
 	movwf	TBLPTRL		; load low byte to TBLPTRL
 	movlw	myTable_l	; bytes to read
 	movwf 	counter		; our counter register
-loop 	tblrd*+			; one byte from PM to TABLAT, increment TBLPRT
-	movff	TABLAT, POSTINC0; move data from TABLAT to (FSR0), inc FSR0	
-	decfsz	counter		; count down to zero
-	bra	loop		; keep going until finished
-	
-	movlw	myTable_l-1	; output message to LCD (leave out "\n")
-	lfsr	FSR2, myArray	; Load FSR0 with address in RAM	(0x400)		
-	call	LCD_Write_Message
-	
-
-	movlw	myTable_l	; output message to UART
-	lfsr	FSR2, myArray
-	call	UART_Transmit_Message
-	
-	;call	LCD_clear
 
 	goto	setup		; goto current line in code
 

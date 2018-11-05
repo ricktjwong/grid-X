@@ -1,10 +1,12 @@
 #include p18f87k22.inc
+    global table
 
-acs0	udata_acs   ; reserve data space in access ram
-
-mapArray res 0x80	
+acs0    udata_acs   ; named variables in access ram
+ 
+storage	  res 1
+map_array res 49	 
 	
-main code
+map_setup	code
 
 table
     movlb	6		    ;select bank 6
