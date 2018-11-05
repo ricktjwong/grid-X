@@ -16,6 +16,10 @@
       <itemPath>UART.asm</itemPath>
       <itemPath>LCD.asm</itemPath>
       <itemPath>main.asm</itemPath>
+      <itemPath>map_setup.asm</itemPath>
+      <itemPath>grids.asm</itemPath>
+      <itemPath>sprite.asm</itemPath>
+      <itemPath>delay.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -24,6 +28,9 @@
     </logicalFolder>
     <itemPath>README.md</itemPath>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>graphics</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
