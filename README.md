@@ -4,13 +4,14 @@ Grid game using the Microchip PIC18F87K22 microprocessor
 <pre>
 POINTS: ___
 
-  1 2 3 4 5 6
-1 W W W W W W
-2 W I W - G W
-3 W - W - - W
-4 W - I F - W
-5 W X - - - W
-6 W W W W W W
+  1 2 3 4 5 6 7
+1 W W W W W W W
+2 W I W - - G W
+3 W - W - - - W
+4 W - I F - - W
+5 W - - - - - W
+6 W X - - - - W
+7 W W W W W W W
 </pre>
 
 **Legend:**\
