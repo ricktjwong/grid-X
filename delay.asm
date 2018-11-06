@@ -8,18 +8,18 @@ tiny_counter	res 1
 delay	code
 		
 add_delay	
-	movwf	global_counter, ACCESS	    ; Does a delay multiplied by value in WREG
+	movwf	global_counter	    ; Does a delay multiplied by value in WREG
 
 global_delay	
 	call	tiny_delay
-	decfsz	global_counter, F, ACCESS
+	decfsz	global_counter, 1
 	bra	global_delay
 	return
 	
 tiny_delay	
 	movlw	0xFF
-	movwf	tiny_counter, ACCESS
-loop	decfsz	tiny_counter, F, ACCESS
+	movwf	tiny_counter
+loop	decfsz	tiny_counter, 1
 	bra	loop
 	return 
 

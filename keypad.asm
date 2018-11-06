@@ -1,6 +1,6 @@
 #include p18f87k22.inc
 
-    global  keypad_input
+    global  keypad_input, final_hex
     extern  add_delay
 
 acs0	udata_acs   ; reserve data space in access ram
@@ -11,45 +11,30 @@ keypad		code
 		
 keypad_input	
     banksel	PADCFG1			; PADCFG1 is not in Access Bank
-    bsf		PADCFG1, REPU, BANKED	; PortE pull-ups on	
-    clrf	LATE			; Clear latch
-    clrf	LATD			; Clear latch
+    bsf		PADCFG1, RJPU, BANKED	; PortE pull-ups on	
+    clrf	LATH			; Clear latch
+    clrf	LATJ			; Clear latch
     movlw	0x0F			; 00001111 - 0 sets outputs, 1 as inputs
-    movwf	TRISE, ACCESS
+    movwf	TRISJ, ACCESS
     
     movlw	0x00
-    movwf	TRISD, ACCESS
+    movwf	TRISH, ACCESS
     
     movlw	0x01
     call	add_delay
-    movff	PORTE, final_hex
+    
+    movff	PORTJ, final_hex
 
-    clrf	LATE			; Clear latch
+    clrf	LATJ			; Clear latch
     movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
-    movwf	TRISE, ACCESS
+    movwf	TRISJ, ACCESS
     
     movlw	0x01
     call	add_delay
-    movf	PORTE, W
+    
+    movf	PORTJ, W
     addwf	final_hex, 1			;  Store in final_hex
     
-map
-    movff	final_hex , PORTD
-    movlw	0x77
-    xorwf	final_hex, 0		; subtract, store in W. Status bit Z 0 if same
-    btfsc	STATUS, Z
-    movlw	'1'
-    btfsc	STATUS, Z	
-    return
-    
-    movff	final_hex , PORTD
-    movlw	0xB7
-    xorwf	final_hex, 0		; subtract, store in W. Status bit Z 0 if same
-    btfsc	STATUS, Z
-    movlw	0x32
-    btfsc	STATUS, Z	
-    return
-
     return
   
     end

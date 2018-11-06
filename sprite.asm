@@ -1,21 +1,22 @@
 #include p18f87k22.inc
 	extern	add_delay
-	global	xman
+	global	xman, centre_x, centre_y
 
-acs0    udata_acs   ; named variables in access ram	
-xman_x	res 1
-xman_y	res 1
-x_min	res 1
-x_max	res 1
-y_min	res 1
-y_max	res 1
+acs0	    udata_acs   ; named variables in access ram	
+centre_x    res 1
+centre_y    res 1
+xman_x	    res 1
+xman_y	    res 1
+x_min	    res 1
+x_max	    res 1
+y_min	    res 1
+y_max	    res 1
 	
-sprite  code
+sprite	    code
 
-;*** From a supplied centre position in WREG, calculate max and min ***
-xman	movlw	0x0D		
-	movwf	xman_x
-	movwf	xman_y
+;*** From a supplied centre position in WREG, calculate max and min ***  
+xman	movff	centre_x, xman_x
+	movff	centre_y, xman_y
 	
 	movlw	0x03
 	subwf	xman_x, 0

@@ -18,7 +18,7 @@ draw_rows
         movlw	0x01				; y-axis at 0V, x-axis 0V - 7V
 	movwf	LATD
 	call	inc_row				; After incrementing, x-axis (LATE) is now at 7V
-	
+		
 	movlw	0x1B				; y-axis at 1V, x-axis 7V - 0V
 	movwf	LATD
 	call	dec_row				; After incrementing, x-axis (LATE) is now at 0V
@@ -77,9 +77,8 @@ draw_cols
 	movlw	0xBD				; x-axis at 7V, y-axis 0V - 7V
 	movwf	LATE	    
 	call	inc_col
-	
-	call	xman				; Add sprite
-	bra	draw_grids
+		
+	return
 	
 inc_row	
 	incf	LATE, 1
@@ -89,8 +88,9 @@ inc_row
 	nop
 	nop
 	nop
+	nop
 	movlw	0xBD
-	cpfsgt	LATE
+	cpfseq	LATE
 	bra	inc_row
 	return
 	
@@ -102,8 +102,9 @@ dec_row
 	nop
 	nop
 	nop
+	nop
 	movlw	0x01
-	cpfsgt	LATE
+	cpfseq	LATE
 	bra	dec_row
 	return
 	
@@ -115,8 +116,9 @@ inc_col
 	nop
 	nop
 	nop
+	nop
 	movlw	0xBD
-	cpfsgt	LATD
+	cpfseq	LATD
 	bra	inc_col
 	return
 	
@@ -128,121 +130,10 @@ dec_col
 	nop
 	nop
 	nop
+	nop
 	movlw	0x01
-	cpfsgt	LATD
+	cpfseq	LATD
 	bra	dec_col
 	return	
 
 	end	
-	
-draw_rows2
-	movlw	0x01
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0x1B
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0x36
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0x51
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0x6C
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0x87
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0xA2
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-	movlw	0x0
-	movwf	LATE
-	movlw	0xBD
-	movwf	LATD
-	movlw	0xBD
-	call	row
-	
-draw_cols2
-	movlw	0x01
-	movwf	LATE
-	movlw	0x00
-	movwf	LATD
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0x1B
-	movwf	LATE
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0x36
-	movwf	LATE
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0x51
-	movwf	LATE
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0x6C
-	movwf	LATE
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0x87
-	movwf	LATE
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0xA2
-	movwf	LATE
-	movlw	0xBD
-	call	col
-	
-	movlw	0x0
-	movwf	LATD
-	movlw	0xBD
-	movwf	LATE
-	movlw	0xBD
-	call	col
