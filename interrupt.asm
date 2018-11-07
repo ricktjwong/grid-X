@@ -5,7 +5,7 @@
 int_hi	code	0x0008		; high vector, no low vector
 	btfss	INTCON,TMR0IF	; check that this is timer0 interrupt
 	retfie	FAST		; if not then return
-	bra	check
+	call	check
 	bcf	INTCON,TMR0IF	; clear interrupt flag
 	retfie	FAST		; fast return from interrupt
 	
