@@ -1,6 +1,7 @@
 # This module will handle image to voltage array conversion for display on an oscilloscope
 
 import numpy as np
+import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
 def png_to_coords(img_path):
@@ -24,7 +25,7 @@ def get_voltages(M, x_i, y_i):
     """
     rows = len(M)
     cols = len(M[0])
-    voltages = [[x_i+i, y_i+j] for i in range(rows) for j in range(cols) if M[i][j] > 0.6]
+    voltages = [[x_i+j, (y_i+rows-i)] for i in range(rows) for j in range(cols) if M[i][j] > 0.6]
     return voltages
 
 def convert_to_hex(v):
@@ -46,7 +47,14 @@ def convert_to_asm(v, filename):
         file.write("movwf  " + "LATD" + "\n")        
     file.close()     
     
-M = png_to_coords("../pngs/grid-x.png")    
+M = png_to_coords("../pngs/startscreen.png")    
 voltages = get_voltages(M, 0, 0)     
-hex_voltages = convert_to_hex(voltages)
-convert_to_asm(hex_voltages, "../asm_txt/grid-x")
+x,y = zip(*voltages)
+plt.scatter(x,y,c='b',marker='.')
+
+M = png_to_coords("../pngs/x_animate/x_1.png")    
+voltages = get_voltages(M, 170, 88)     
+x,y = zip(*voltages)
+plt.scatter(x,y,c='b',marker='.')
+#hex_voltages = convert_to_hex(voltages)
+#convert_to_asm(hex_voltages, "../asm_txt/grid-x")
