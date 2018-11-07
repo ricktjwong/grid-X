@@ -17,7 +17,7 @@ global_delay
 	return
 	
 tiny_delay	
-	movlw	0xFF
+	movlw	0x0F
 	movwf	tiny_counter
 loop	decfsz	tiny_counter, 1
 	bra	loop
