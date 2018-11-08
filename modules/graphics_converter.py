@@ -25,36 +25,70 @@ def get_voltages(M, x_i, y_i):
     """
     rows = len(M)
     cols = len(M[0])
-    voltages = [[x_i+j, (y_i+rows-i)] for i in range(rows) for j in range(cols) if M[i][j] > 0.6]
+    voltages = [[x_i+j, (y_i+rows-i)] for i in range(rows) for j in range(cols) if M[i][j] > 0.05]
     return voltages
 
 def convert_to_hex(v):
     return [[hex(i), hex(j)] for i,j in v]
 
 def convert_to_asm(v, filename):
-    file = open(filename + ".txt", "w")    
-    file.write("clrf  LATD \n")
-    file.write("clrf  LATE \n")
-    file.write("movlw  0x0 \n")
-    file.write("movwf  TRISD, ACCESS \n")
-    file.write("movlw  0x0 \n")
-    file.write("movwf  TRISE, ACCESS \n\n\n")
-	
+    file = open(filename + ".asm", "w")    
+    
     for i,j in v:
         file.write("movlw  " + i + "\n")
+        file.write("addwf  player_x, 0" + "\n")
         file.write("movwf  " + "LATE" + "\n")
+        file.write("movlw  0x0A \n")
+        file.write("call  add_tiny_delay \n")
         file.write("movlw  " + j + "\n")
-        file.write("movwf  " + "LATD" + "\n")        
+        file.write("addwf  player_y, 0" + "\n")
+        file.write("movwf  " + "LATD" + "\n")
+        file.write("movlw  0x0A \n")
+        file.write("call  add_tiny_delay \n")        
     file.close()     
     
-M = png_to_coords("../pngs/startscreen.png")    
+def generate_xanimate():
+    file = open("../asm_txt/animated" + ".asm", "w")    
+    for i in range(9):
+        M = png_to_coords("../pngs/x_animate/x_" + str(i) + ".png")    
+        voltages = get_voltages(M, 170, 88)    
+        hex_voltages = convert_to_hex(voltages)
+        for i,j in hex_voltages:
+            file.write("movlw  " + i + "\n")
+            file.write("addwf  player_x, 0" + "\n")
+            file.write("movwf  " + "LATE" + "\n")
+            file.write("movlw  0x0A \n")
+            file.write("call  add_tiny_delay \n")
+            file.write("movlw  " + j + "\n")
+            file.write("addwf  player_y, 0" + "\n")
+            file.write("movwf  " + "LATD" + "\n")
+            file.write("movlw  0x0A \n")
+            file.write("call  add_tiny_delay \n")  
+    file.close()       
+    
+M = png_to_coords("../pngs/item.png")    
 voltages = get_voltages(M, 0, 0)     
 x,y = zip(*voltages)
 plt.scatter(x,y,c='b',marker='.')
+plt.show()
 
-M = png_to_coords("../pngs/x_animate/x_1.png")    
-voltages = get_voltages(M, 170, 88)     
-x,y = zip(*voltages)
-plt.scatter(x,y,c='b',marker='.')
+hex_voltages = convert_to_hex(voltages)
+convert_to_asm(hex_voltages, "../asm_txt/item")    
+    
+#M = png_to_coords("../pngs/startscreen.png")    
+#voltages = get_voltages(M, 0, 0)     
+#x,y = zip(*voltages)
+#plt.scatter(x,y,c='b',marker='.')
+#plt.show()
+#
 #hex_voltages = convert_to_hex(voltages)
 #convert_to_asm(hex_voltages, "../asm_txt/grid-x")
+
+#M = png_to_coords("../pngs/x.png")    
+#voltages = get_voltages(M, 0, 0)     
+#x,y = zip(*voltages)
+#plt.scatter(x,y,c='b',marker='.')
+#plt.show()
+#
+#hex_voltages = convert_to_hex(voltages)
+#convert_to_asm(hex_voltages, "../asm_txt/x")
