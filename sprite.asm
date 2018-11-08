@@ -1,5 +1,4 @@
 #include p18f87k22.inc
-	extern	add_delay
 	global	xman, centre_x, centre_y
 
 acs0	    udata_acs   ; named variables in access ram	

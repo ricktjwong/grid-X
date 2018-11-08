@@ -1,7 +1,7 @@
 #include p18f87k22.inc
 
     global  keypad_input, final_hex
-    extern  add_delay, xman, centre_x, centre_y, enable_bit
+    extern  add_tiny_delay, draw_player, player_x, player_y, enable_bit, setup, start
 
 acs0	udata_acs   ; reserve data space in access ram
 hashmap	    res 1
@@ -20,8 +20,8 @@ keypad_input
     movlw	0x00
     movwf	TRISH, ACCESS
     
-    movlw	0x01
-    call	add_delay
+    movlw	0xFF
+    call	add_tiny_delay
     
     movff	PORTJ, final_hex
 
@@ -29,8 +29,8 @@ keypad_input
     movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
     movwf	TRISJ, ACCESS
     
-    movlw	0x01
-    call	add_delay
+    movlw	0xFF
+    call	add_tiny_delay
     
     movf	PORTJ, W
     addwf	final_hex, 1			;  Store in final_hex
@@ -46,8 +46,8 @@ rejoin
     movlw	0x00
     movwf	TRISH, ACCESS
 
-    movlw	0x01
-    call	add_delay
+    movlw	0xFF
+    call	add_tiny_delay
 
     movff	PORTJ, final_hex
 
@@ -55,8 +55,8 @@ rejoin
     movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
     movwf	TRISJ, ACCESS
 
-    movlw	0x01
-    call	add_delay
+    movlw	0xFF
+    call	add_tiny_delay
 
     movf	PORTJ, W
     addwf	final_hex, 1			;  Store in final_hex
@@ -95,6 +95,16 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	bra	second_check_left
+	btfsc	STATUS, Z
+	return
+	
+	movff	final_hex, PORTH
+	movlw	0xEE
+	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
+	btfsc	STATUS, Z
+	bcf	INTCON,TMR0IF	; clear interrupt flag
+	btfsc	STATUS, Z
+	goto	setup
 	btfsc	STATUS, Z
 	return
 	
@@ -144,32 +154,32 @@ move_up
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
-	addwf	centre_y, 1
-	call	xman
+	addwf	player_y, 1
+	call	draw_player
 	return
 	
 move_down
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
-	subwf	centre_y, 1
-	call	xman
+	subwf	player_y, 1
+	call	draw_player
 	return
 	
 move_right
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
-	addwf	centre_x, 1
-	call	xman
+	addwf	player_x, 1
+	call	draw_player
 	return
 	
 move_left
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
-	subwf	centre_x, 1
-	call	xman
+	subwf	player_x, 1
+	call	draw_player
 	return
     
     return

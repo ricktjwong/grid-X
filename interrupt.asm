@@ -2,9 +2,6 @@
 	global	start_int
 	extern	keypad_input, final_hex, xman, centre_x, centre_y
 	
-acs0	udata_acs
-
-	
 int_hi	code	0x0008		; high vector, no low vector
 	btfss	INTCON,TMR0IF	; check that this is timer0 interrupt
 	retfie	FAST		; if not then return
