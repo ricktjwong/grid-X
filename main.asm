@@ -28,6 +28,8 @@ setup	movlw	0x04
 	movlw	0x38
 	movwf   item_x
 	movwf   item_y
+	movlw	0x08
+	movwf	player_gridhex
 begin
 	call	draw_item
 	call	start_int

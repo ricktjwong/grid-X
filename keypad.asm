@@ -1,11 +1,15 @@
 #include p18f87k22.inc
+#include constants.inc
 
     global  keypad_input, final_hex
     extern  add_tiny_delay, draw_player, player_x, player_y, enable_bit, setup, start
+    extern  player_gridhex
 
 acs0	udata_acs   ; reserve data space in access ram
 hashmap	    res 1
 final_hex   res 1
+new_gridhex res 1
+grid_value res 1
 
 keypad		code
 		
@@ -126,31 +130,73 @@ second_check_up
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
-	call	move_up
+	call	third_check_up
 	goto    rejoin
 	
 second_check_down
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
-	call	move_down
+	call	third_check_down
 	goto	rejoin
 	
 second_check_right
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
-	call	move_right
+	call	third_check_right
 	return
 	
 second_check_left
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
+	call	third_check_left
+	return
+	
+third_check_up
+	movlw	0x07
+	addwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		; 
+	btfss	STATUS, Z
+	call	move_up
+	return
+	
+third_check_down
+	movlw	0x07
+	subwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		; 
+	btfss	STATUS, Z
+	call	move_down
+	return
+	
+third_check_right
+	movlw	0x01
+	addwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		; 
+	btfss	STATUS, Z
+	call	move_right
+	return
+	
+third_check_left
+	movlw	0x01
+	subwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		; 
+	btfss	STATUS, Z
 	call	move_left
 	return
 	
 move_up
+	movlw	0x07
+	addwf	player_gridhex, 1	; store new position in F
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -159,6 +205,8 @@ move_up
 	return
 	
 move_down
+	movlw	0x07
+	subwf	player_gridhex, 1	; store new position in F
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -167,6 +215,8 @@ move_down
 	return
 	
 move_right
+	movlw	0x01
+	addwf	player_gridhex, 1	; store new position in F
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -175,6 +225,8 @@ move_right
 	return
 	
 move_left
+	movlw	0x01
+	subwf	player_gridhex, 1	; store new position in F
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
