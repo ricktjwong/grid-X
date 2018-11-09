@@ -5,7 +5,6 @@
 acs0	    udata_acs   ; named variables in access ram	
 storage     res 1
 tables	    udata   0x400	; reserve data anywhere in RAM (here at 0x400)
-myArray	    res	    0x80	; reserve 128 bytes for message data
 	
 level1	    code
 	    

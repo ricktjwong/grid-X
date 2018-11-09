@@ -1,3 +1,4 @@
-CONSTANT wall=0x01
-CONSTANT goal=0x02
-CONSTANT item=0x04
+    CONSTANT wall=0x01
+    CONSTANT goal=0x02
+    CONSTANT item=0x04
+    CONSTANT onevolt_hex=0x1b
