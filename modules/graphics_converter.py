@@ -36,12 +36,12 @@ def convert_to_asm(v, filename):
     
     for i,j in v:
         file.write("movlw  " + i + "\n")
-        file.write("addwf  box_x, 0" + "\n")
+#        file.write("addwf  box_x, 0" + "\n")
         file.write("movwf  " + "LATE" + "\n")
         file.write("movlw  0x0A \n")
         file.write("call  add_tiny_delay \n")
         file.write("movlw  " + j + "\n")
-        file.write("addwf  box_y, 0" + "\n")
+#        file.write("addwf  box_y, 0" + "\n")
         file.write("movwf  " + "LATD" + "\n")
         file.write("movlw  0x0A \n")
         file.write("call  add_tiny_delay \n")        
@@ -66,23 +66,23 @@ def generate_xanimate():
             file.write("call  add_tiny_delay \n")  
     file.close()       
     
-M = png_to_coords("../pngs/key.png")    
-voltages = get_voltages(M, 0, 0)     
-x,y = zip(*voltages)
-plt.scatter(x,y,c='b',marker='.')
-plt.show()
-
-hex_voltages = convert_to_hex(voltages)
-convert_to_asm(hex_voltages, "../asm/key")    
-    
-#M = png_to_coords("../pngs/startscreen.png")    
+#M = png_to_coords("../pngs/key.png")    
 #voltages = get_voltages(M, 0, 0)     
 #x,y = zip(*voltages)
 #plt.scatter(x,y,c='b',marker='.')
 #plt.show()
 #
 #hex_voltages = convert_to_hex(voltages)
-#convert_to_asm(hex_voltages, "../asm_txt/grid-x")
+#convert_to_asm(hex_voltages, "../asm/key")    
+    
+M = png_to_coords("../pngs/play_again.png")    
+voltages = get_voltages(M, 0, 108)     
+x,y = zip(*voltages)
+plt.scatter(x,y,c='b',marker='.')
+plt.show()
+
+hex_voltages = convert_to_hex(voltages)
+convert_to_asm(hex_voltages, "../asm/end")
 
 #M = png_to_coords("../pngs/x.png")    
 #voltages = get_voltages(M, 0, 0)     
