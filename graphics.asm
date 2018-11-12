@@ -1,6 +1,6 @@
 #include p18f87k22.inc
 #include constants.inc
-	global render_graphics
+	global render_graphics, grid_value_out
 	extern	item_x, item_y, draw_item, grid_iter, onevolt
 	
 acs0    udata_acs
