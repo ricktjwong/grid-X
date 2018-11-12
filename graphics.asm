@@ -2,6 +2,8 @@
 #include constants.inc
 	global render_graphics, grid_value_out
 	extern	item_x, item_y, draw_item, grid_iter, onevolt
+	extern	wall_x, wall_y, draw_wall
+	extern	goal_x, goal_y, draw_goal
 	
 acs0    udata_acs
 grid_value_out  res 1
@@ -61,15 +63,15 @@ set_wall_xy
 	movlw	0x0F
 	andwf	yx, 0		; logical AND yx with 00001111 to get only low nibble stored in W
 	mulwf	onevolt
-	movff   PRODL, item_x	; item_x now holds x coordinates
+	movff   PRODL, wall_x	; wall_x now holds x coordinates
 	
 	swapf	yx, 1		; swap yx (to xy) result stored in yx
 	movlw	0x0F
 	andwf	yx, 0		; logical AND. Result stored in W.
 	mulwf	onevolt
-	movff   PRODL, item_y		; item_y now holds high nibbles in original yx. Holds y coordinates
+	movff   PRODL, wall_y		; wall_y now holds high nibbles in original yx. Holds y coordinates
 	
-	call	draw_item
+	call	draw_wall
 	goto	end_graphics
 	
 set_goal_xy
@@ -78,15 +80,15 @@ set_goal_xy
 	movlw	0x0F
 	andwf	yx, 0		; logical AND yx with 00001111 to get only low nibble stored in W
 	mulwf	onevolt
-	movff   PRODL, item_x	; item_x now holds x coordinates
+	movff   PRODL, goal_x	; goal_x now holds x coordinates
 	
 	swapf	yx, 1		; swap yx (to xy) result stored in yx
 	movlw	0x0F
 	andwf	yx, 0		; logical AND. Result stored in W.
 	mulwf	onevolt
-	movff   PRODL, item_y		; item_y now holds high nibbles in original yx. Holds y coordinates
+	movff   PRODL, goal_y		; goal_y now holds high nibbles in original yx. Holds y coordinates
 	
-	call	draw_item
+	call	draw_goal
 	goto	end_graphics
 
 end_graphics
