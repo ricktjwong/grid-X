@@ -12,17 +12,29 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="Graphics" projectFiles="true">
+        <itemPath>grids.asm</itemPath>
+        <itemPath>sprite.asm</itemPath>
+        <itemPath>graphics.asm</itemPath>
+        <itemPath>item.asm</itemPath>
+        <itemPath>player.asm</itemPath>
+        <itemPath>startscreen.asm</itemPath>
+        <itemPath>goal.asm</itemPath>
+        <itemPath>wall.asm</itemPath>
+        <itemPath>endscreen.asm</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Tables" projectFiles="true">
+        <itemPath>hexvoltage_table.asm</itemPath>
+        <itemPath>level1.asm</itemPath>
+      </logicalFolder>
       <itemPath>config.asm</itemPath>
       <itemPath>UART.asm</itemPath>
       <itemPath>LCD.asm</itemPath>
       <itemPath>main.asm</itemPath>
-      <itemPath>map_setup.asm</itemPath>
-      <itemPath>grids.asm</itemPath>
-      <itemPath>sprite.asm</itemPath>
       <itemPath>delay.asm</itemPath>
       <itemPath>keypad.asm</itemPath>
-      <itemPath>startscreen.asm</itemPath>
       <itemPath>interrupt.asm</itemPath>
+      <itemPath>constants.inc</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,6 +44,7 @@
     <itemPath>README.md</itemPath>
   </logicalFolder>
   <sourceRootList>
+    <Elem>.</Elem>
     <Elem>graphics</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -42,10 +55,10 @@
         <targetDevice>PIC18F87K22</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>Simulator</platformTool>
+        <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>MPASMWIN</languageToolchain>
         <languageToolchainVersion>5.81</languageToolchainVersion>
-        <platform>4</platform>
+        <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.0.40"/>
@@ -81,7 +94,8 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
