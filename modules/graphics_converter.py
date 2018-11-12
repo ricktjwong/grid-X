@@ -1,4 +1,7 @@
-# This module will handle image to voltage array conversion for display on an oscilloscope
+""" 
+This module handles the image to voltage array conversion for display on an 
+oscilloscope
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,7 +9,7 @@ import matplotlib.image as mpimg
 
 def png_to_coords(img_path):
     """
-    Take an alpha-ed png image 
+    Take an alpha-ed png image
     """
     # Start screen image is 240x53 pixels
     img = mpimg.imread(img_path)
@@ -14,9 +17,10 @@ def png_to_coords(img_path):
     col = img.shape[1]
     matrix = np.zeros((row, col))
     for i in range(row):
-        for j in range(col):
-            matrix[i][j] = img[i][j][3]             # RGBA: Use the alpha value to denote existence of a pixel
-    return matrix        
+        for j in range(col):                    # RGBA: Use the alpha value to
+            matrix[i][j] = img[i][j][3]         # denote existence of a pixel
+    return matrix
+
 
 def get_voltages(M, x_i, y_i):
     """
@@ -25,11 +29,14 @@ def get_voltages(M, x_i, y_i):
     """
     rows = len(M)
     cols = len(M[0])
-    voltages = [[x_i+j, (y_i+rows-i)] for i in range(rows) for j in range(cols) if M[i][j] > 0.22]
+    voltages = [[x_i+j, (y_i+rows-i)] for i in range(rows)
+                for j in range(cols) if M[i][j] > 0.22]
     return voltages
+
 
 def convert_to_hex(v):
     return [[hex(i), hex(j)] for i,j in v]
+
 
 def convert_to_asm(v, filename):
     file = open(filename + ".asm", "w")    
