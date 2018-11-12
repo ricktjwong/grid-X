@@ -8,6 +8,8 @@
 acs0    udata_acs
 grid_value_out  res 1
 yx		res 1
+counter		res 1
+pos		res 1
 
 	
 graphics	code
@@ -15,11 +17,16 @@ graphics	code
 render_graphics
 	movlw	onevolt_hex
 	movwf	onevolt
-	movf	grid_iter, W
+	movlw	0x07
+	mulwf	grid_iter
+	movf	PRODL, W
+	addwf	counter, 0			    ; store result in W
+	movwf	pos
 	movff	PLUSW1, grid_value_out
-	movlw	0x31				    ; decimal 49
-	cpfslt  grid_iter			    ; skip next line if iter < 49 decimal
+	movlw	0x07				    ;  < decimal 7
+	cpfslt  grid_iter			    ; skip next line if iter < 7 decimal
 	clrf	grid_iter			    ; resets iter to 0
+	
 	
 check_item
 	movlw	item
@@ -29,7 +36,7 @@ check_item
 
 check_wall
 	movlw	wall
-	xorwf	grid_value_out, 0		    ; Store result of XOR in F		
+	xorwf	grid_value_out, 0		    ; Store result of XOR in W		
 	btfsc	STATUS, Z
 	goto	set_wall_xy
 	
@@ -41,7 +48,7 @@ check_goal
 	goto	end_graphics
 	
 set_item_xy
-	movf	grid_iter, W
+	movf	pos, W
 	movff	PLUSW0, yx
 	movlw	0x0F
 	andwf	yx, 0		; logical AND yx with 00001111 to get only low nibble stored in W
@@ -58,7 +65,7 @@ set_item_xy
 	goto	end_graphics
 	
 set_wall_xy
-	movf	grid_iter, W
+	movf	pos, W
 	movff	PLUSW0, yx
 	movlw	0x0F
 	andwf	yx, 0		; logical AND yx with 00001111 to get only low nibble stored in W
@@ -75,7 +82,7 @@ set_wall_xy
 	goto	end_graphics
 	
 set_goal_xy
-	movf	grid_iter, W
+	movf	pos, W
 	movff	PLUSW0, yx
 	movlw	0x0F
 	andwf	yx, 0		; logical AND yx with 00001111 to get only low nibble stored in W
@@ -91,9 +98,20 @@ set_goal_xy
 	call	draw_goal
 	goto	end_graphics
 
+
 end_graphics
-	incf	grid_iter
+	incf	counter
+	movlw	0x07
+	cpfslt	counter
+	goto	increment_grid_iter
+	bra	render_graphics
+rejoin
 	return
+	
+increment_grid_iter
+	clrf	counter
+	incf	grid_iter
+	goto	rejoin
 	end
 	
 	

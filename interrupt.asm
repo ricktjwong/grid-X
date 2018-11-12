@@ -20,5 +20,3 @@ start_int
 	return
 
 	end
-
-

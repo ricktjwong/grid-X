@@ -15,7 +15,7 @@ display_start_screen
 draw_x   
     call draw_grid
     call draw_animated
-    bra draw_x
+    return
     
 draw_grid
     movlw  0x11

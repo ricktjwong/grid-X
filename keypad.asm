@@ -4,6 +4,7 @@
     global  keypad_input, final_hex
     extern  add_tiny_delay, draw_player, player_x, player_y, enable_bit, setup, start
     extern  player_gridhex, grid_value_out, player_score, display_start_screen, start2, begin
+    extern  gamestate
 
 acs0	udata_acs   ; reserve data space in access ram
 hashmap	    res 1
@@ -107,12 +108,7 @@ checkdown
 	movlw	0xEE
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
-	bcf	INTCON,TMR0IF	; clear interrupt flag
-	btfsc	STATUS, Z
-	POP
-	btfsc	STATUS, Z
-	goto	begin
-	btfsc	STATUS, Z
+	call	handle_D_button
 	return
 	
 	return
@@ -274,9 +270,9 @@ check_goal
 	movlw	goal
 	xorwf	grid_value_out, 0		    ; Store result of XOR in W		
 	btfsc	STATUS, Z
-	bcf	INTCON,TMR0IF	; clear interrupt flag
+	movlw	0x02
 	btfsc	STATUS, Z
-	goto	start2
+	movwf	gamestate
 	return
 	
 destroy_item
@@ -287,7 +283,12 @@ destroy_item
 	movlw	item_reward
 	addwf	player_score
 	return
-	
+
+handle_D_button
+	;bcf	INTCON,TMR0IF	; clear interrupt flag
+	movlw	0x01
+	movwf	gamestate
+	return
 
   
     end
