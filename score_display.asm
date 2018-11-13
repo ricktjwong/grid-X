@@ -2,16 +2,17 @@
 #include constants.inc
 
     global  display_score
-    extern  player_score, draw_one
+    extern  player_score, draw_zero, draw_one, draw_two, draw_three, draw_four
+    extern  draw_five, draw_six, draw_seven, draw_eight, draw_nine
 
 acs0	udata_acs	; reserve data space in access ram
 	
-ps_tmp		res 1
-check_tmp	res 1
-ones		res 1
-tens		res 1
-hundreds	res 1
-digit_pos	res 1
+ones		res 1	; reserve one byte to store ones place
+tens		res 1	; reserve one byte to store tenths place
+hundreds	res 1	; reserve one byte to store hundredths place
+ps_tmp		res 1	; player_score temporary storage
+check_tmp	res 1	; stores the ones/tenths/hundredths place for checking
+digit_pos	res 1	; variable to keep track of which x_coord to print digit 
 
 score_display	code
 	
@@ -63,49 +64,68 @@ display_digits
 	    movf	ones, W
 	    call	check_display
 	    return
-;
+
 check_display   
 	    movwf	check_tmp
-;	    movlw	0x00
-;	    cpfseq	check_tmp
-;	    call	draw_zero
-;	    
+	    movlw	0x00
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_zero
+	    
 	    movlw	0x01
 	    cpfseq	check_tmp
 	    return
 	    movf	digit_pos, W
 	    call	draw_one
-;	    
-;	    movlw	0x02
-;	    cpfseq	check_tmp
-;	    call	draw_two
-;	    
-;	    movlw	0x03
-;	    cpfseq	check_tmp
-;	    call	draw_three
-;	    
-;	    movlw	0x04
-;	    cpfseq	check_tmp
-;	    call	draw_four
-;	    
-;	    movlw	0x05
-;	    cpfseq	check_tmp
-;	    call	draw_five
-;	    
-;	    movlw	0x06
-;	    cpfseq	check_tmp
-;	    call	draw_six
-;	    
-;	    movlw	0x07
-;	    cpfseq	check_tmp
-;	    call	draw_seven
-;	    
-;	    movlw	0x08
-;	    cpfseq	check_tmp
-;	    call	draw_eight
-;	    
-;	    movlw	0x09
-;	    cpfseq	check_tmp
-;	    call	draw_nine	    
+	    
+	    movlw	0x02
+	    cpfseq	check_tmp
 	    return
+	    movf	digit_pos, W
+	    call	draw_two
+	    
+	    movlw	0x03
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_three
+	    
+	    movlw	0x04
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_four
+	    
+	    movlw	0x05
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_five
+	    
+	    movlw	0x06
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_six
+	    
+	    movlw	0x07
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_seven
+	    
+	    movlw	0x08
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_eight
+	    
+	    movlw	0x09
+	    cpfseq	check_tmp
+	    return
+	    movf	digit_pos, W
+	    call	draw_nine	    
+	    return
+	    
 	    end

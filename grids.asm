@@ -1,5 +1,4 @@
 #include p18f87k22.inc
-	extern	xman
 	global	draw_grids
 	
 grids    code
@@ -136,4 +135,4 @@ dec_col
 	bra	dec_col
 	return	
 
-	end	
+	end

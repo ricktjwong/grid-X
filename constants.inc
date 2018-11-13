@@ -5,3 +5,4 @@
     CONSTANT move_penalty = 0x03
     CONSTANT item_reward = 0x07
     CONSTANT goal_reward = 0x63
+    

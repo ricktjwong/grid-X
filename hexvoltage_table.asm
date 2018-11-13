@@ -267,9 +267,6 @@ hexvoltage_table
     movwf       storage2
     movlw       0x30
     movff       storage2, PLUSW0
-
     return
     
     end
-
-

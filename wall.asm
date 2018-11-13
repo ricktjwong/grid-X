@@ -799,7 +799,6 @@ draw_wall
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-
     return
     
     end

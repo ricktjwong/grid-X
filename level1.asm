@@ -178,7 +178,6 @@ level1_table
     movwf	storage
     movlw	0x30
     movff	storage, PLUSW1
-    
     return
     
     end

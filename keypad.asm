@@ -1,75 +1,52 @@
 #include p18f87k22.inc
 #include constants.inc
 
-    global  keypad_input, final_hex
-    extern  add_tiny_delay, draw_player, player_x, player_y, enable_bit, setup, start
-    extern  player_gridhex, grid_value_out, player_score, display_start_screen, begin
+    global  keypad_checks, final_hex
+    extern  add_tiny_delay, draw_player, player_x, player_y, enable_bit
+    extern  player_gridhex, grid_value_out, player_score, display_start_screen
     extern  gamestate
 
-acs0	udata_acs   ; reserve data space in access ram
-hashmap	    res 1
-final_hex   res 1
-new_gridhex res 1
-grid_value res 1
-destroy_store res 1
+acs0		udata_acs		; reserve data space in access ram
+hashmap		res 1
+final_hex	res 1
+new_gridhex	res 1
+grid_value	res 1
+destroy_store	res 1
 
 keypad		code
 		
+keypad_checks
+	banksel	PADCFG1			; PADCFG1 is not in Access Bank
+	bsf	PADCFG1, RJPU, BANKED	; PortE pull-ups on			
+	call	keypad_input
+	call	checkdown
+rejoin    
+	call	keypad_input
+	call	checkup
+	return
+		
 keypad_input	
-    banksel	PADCFG1			; PADCFG1 is not in Access Bank
-    bsf		PADCFG1, RJPU, BANKED	; PortE pull-ups on	
-    clrf	LATH			; Clear latch
-    clrf	LATJ			; Clear latch
-    movlw	0x0F			; 00001111 - 0 sets outputs, 1 as inputs
-    movwf	TRISJ, ACCESS
-    
-    movlw	0x00
-    movwf	TRISH, ACCESS
-    
-    movlw	0xFF
-    call	add_tiny_delay
-    
-    movff	PORTJ, final_hex
+	clrf	LATH			; Clear latch
+	clrf	LATJ			; Clear latch
+	movlw	0x0F			; 00001111 - 0 sets outputs, 1 as inputs
+	movwf	TRISJ, ACCESS
+	movlw	0x00
+	movwf	TRISH, ACCESS
 
-    clrf	LATJ			; Clear latch
-    movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
-    movwf	TRISJ, ACCESS
-    
-    movlw	0xFF
-    call	add_tiny_delay
-    
-    movf	PORTJ, W
-    addwf	final_hex, 1			;  Store in final_hex
-    
-    call	checkdown
+	movlw	0xFF
+	call	add_tiny_delay
 
-rejoin
-    clrf	LATH			; Clear latch
-    clrf	LATJ			; Clear latch
-    movlw	0x0F			; 00001111 - 0 sets outputs, 1 as inputs
-    movwf	TRISJ, ACCESS
+	movff	PORTJ, final_hex
+	clrf	LATJ			; Clear latch
+	movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
+	movwf	TRISJ, ACCESS
+	
+	movlw	0xFF
+	call	add_tiny_delay
 
-    movlw	0x00
-    movwf	TRISH, ACCESS
-
-    movlw	0xFF
-    call	add_tiny_delay
-
-    movff	PORTJ, final_hex
-
-    clrf	LATJ			; Clear latch
-    movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
-    movwf	TRISJ, ACCESS
-
-    movlw	0xFF
-    call	add_tiny_delay
-
-    movf	PORTJ, W
-    addwf	final_hex, 1			;  Store in final_hex
-    
-    call	checkup
-    
-		return
+	movf	PORTJ, W
+	addwf	final_hex, 1		;  Store in final_hex
+	return
     
 checkdown
 	movff	final_hex, PORTH
@@ -79,7 +56,7 @@ checkdown
 	bra	second_check_up
 	btfsc	STATUS, Z
 	return
-	
+
 	movff	final_hex, PORTH
 	movlw	0xBD
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
@@ -87,7 +64,7 @@ checkdown
 	bra	second_check_down
 	btfsc	STATUS, Z
 	return
-	
+
 	movff	final_hex, PORTH
 	movlw	0xDB
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
@@ -95,7 +72,7 @@ checkdown
 	bra	second_check_right
 	btfsc	STATUS, Z
 	return
-	
+
 	movff	final_hex, PORTH
 	movlw	0x7B
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
@@ -103,14 +80,14 @@ checkdown
 	bra	second_check_left
 	btfsc	STATUS, Z
 	return
-	
+
 	movff	final_hex, PORTH
 	movlw	0xEE
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	handle_D_button
 	return
-	
+
 	return
 
 checkup
@@ -158,7 +135,7 @@ third_check_up
 	addwf	player_gridhex, 0	; store new position in W
 	movff	PLUSW1, grid_value	; Get byte from FSR1
 	movlw	wall
-	xorwf	grid_value		; 
+	xorwf	grid_value		
 	btfss	STATUS, Z
 	call	move_up
 	return
@@ -168,7 +145,7 @@ third_check_down
 	subwf	player_gridhex, 0	; store new position in W
 	movff	PLUSW1, grid_value	; Get byte from FSR1
 	movlw	wall
-	xorwf	grid_value		; 
+	xorwf	grid_value		
 	btfss	STATUS, Z
 	call	move_down
 	return
@@ -178,7 +155,7 @@ third_check_right
 	addwf	player_gridhex, 0	; store new position in W
 	movff	PLUSW1, grid_value	; Get byte from FSR1
 	movlw	wall
-	xorwf	grid_value		; 
+	xorwf	grid_value		
 	btfss	STATUS, Z
 	call	move_right
 	return
@@ -188,7 +165,7 @@ third_check_left
 	subwf	player_gridhex, 0	; store new position in W
 	movff	PLUSW1, grid_value	; Get byte from FSR1
 	movlw	wall
-	xorwf	grid_value		; 
+	xorwf	grid_value		
 	btfss	STATUS, Z
 	call	move_left
 	return
@@ -257,18 +234,18 @@ move_left
 	call	draw_player
 	return
 	
-  return
+	return
   
 check_item_pickup
 	movlw	item
-	xorwf	grid_value_out, 0		    ; Store result of XOR in W		
+	xorwf	grid_value_out, 0	; Store result of XOR in W		
 	btfsc	STATUS, Z
 	call	destroy_item
 	return
 	
 check_goal
 	movlw	goal
-	xorwf	grid_value_out, 0		    ; Store result of XOR in W		
+	xorwf	grid_value_out, 0	; Store result of XOR in W		
 	btfsc	STATUS, Z
 	movlw	0x02
 	btfsc	STATUS, Z
@@ -285,10 +262,8 @@ destroy_item
 	return
 
 handle_D_button
-	;bcf	INTCON,TMR0IF	; clear interrupt flag
 	movlw	0x01
 	movwf	gamestate
 	return
 
-  
     end

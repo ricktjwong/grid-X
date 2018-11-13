@@ -13,8 +13,21 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Graphics" projectFiles="true">
+        <logicalFolder name="f1" displayName="digits" projectFiles="true">
+          <itemPath>eight.asm</itemPath>
+          <itemPath>five.asm</itemPath>
+          <itemPath>four.asm</itemPath>
+          <itemPath>one.asm</itemPath>
+          <itemPath>nine.asm</itemPath>
+          <itemPath>six.asm</itemPath>
+          <itemPath>seven.asm</itemPath>
+          <itemPath>three.asm</itemPath>
+          <itemPath>two.asm</itemPath>
+          <itemPath>zero.asm</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="grid_sprites" projectFiles="true">
+        </logicalFolder>
         <itemPath>grids.asm</itemPath>
-        <itemPath>sprite.asm</itemPath>
         <itemPath>graphics.asm</itemPath>
         <itemPath>item.asm</itemPath>
         <itemPath>player.asm</itemPath>
@@ -28,15 +41,12 @@
         <itemPath>level1.asm</itemPath>
       </logicalFolder>
       <itemPath>config.asm</itemPath>
-      <itemPath>UART.asm</itemPath>
-      <itemPath>LCD.asm</itemPath>
       <itemPath>main.asm</itemPath>
       <itemPath>delay.asm</itemPath>
       <itemPath>keypad.asm</itemPath>
       <itemPath>interrupt.asm</itemPath>
       <itemPath>constants.inc</itemPath>
       <itemPath>score_display.asm</itemPath>
-      <itemPath>one.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -60,7 +70,7 @@
         <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>MPASMWIN</languageToolchain>
         <languageToolchainVersion>5.81</languageToolchainVersion>
-        <platform>3</platform>
+        <platform>4</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.0.40"/>
