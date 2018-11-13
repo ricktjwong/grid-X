@@ -3,6 +3,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xed
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -11,6 +12,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xec
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -19,6 +21,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xec
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -27,6 +30,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xec
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -35,6 +39,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xec
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -43,6 +48,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xeb
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -51,6 +57,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xea
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -59,6 +66,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe9
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -67,6 +75,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe8
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -75,6 +84,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe7
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -83,6 +93,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe6
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -91,6 +102,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe5
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -99,6 +111,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe4
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -107,6 +120,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe3
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -115,6 +129,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe2
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -123,6 +138,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe1
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -131,6 +147,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xe0
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -139,6 +156,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -147,6 +165,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -155,6 +174,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -163,6 +183,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -171,6 +192,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -179,6 +201,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -187,6 +210,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -195,6 +219,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
@@ -203,6 +228,7 @@ addwf  digit_x, 0
 movwf  LATE
 movlw  0x0A 
 call  add_tiny_delay 
+movlw  0xdf
 movwf  LATD
 movlw  0x0A 
 call  add_tiny_delay 
