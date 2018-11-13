@@ -11,42 +11,12 @@ player_gridhex res 1
 player	code
 
 draw_player
-    movlw  0x2
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1d
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1d
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
     movlw  0x4
     addwf  player_x, 0
     movwf  LATE
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x1c
+    movlw  0x18
     addwf  player_y, 0
     movwf  LATD
     movlw  0x0A 
@@ -54,369 +24,9 @@ draw_player
     movlw  0x5
     addwf  player_x, 0
     movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
     movlw  0x18
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1c
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x18
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
     addwf  player_y, 0
     movwf  LATD
     movlw  0x0A 
@@ -471,7 +81,7 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0xb
+    movlw  0x12
     addwf  player_x, 0
     movwf  LATE
     movlw  0x0A 
@@ -481,7 +91,17 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0xc
+    movlw  0x13
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x18
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x14
     addwf  player_x, 0
     movwf  LATE
     movlw  0x0A 
@@ -501,1302 +121,22 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xd
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xe
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xc
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xf
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xb
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
     movlw  0x16
     addwf  player_x, 0
     movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0xa
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x10
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x9
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x11
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x8
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x12
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x13
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x14
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x7
-    addwf  player_y, 0
-    movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
     movlw  0x18
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x17
     addwf  player_x, 0
     movwf  LATE
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x7
+    movlw  0x18
     addwf  player_y, 0
     movwf  LATD
     movlw  0x0A 
@@ -1806,7 +146,107 @@ draw_player
     movwf  LATE
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x6
+    movlw  0x17
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x7
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x17
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x14
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x17
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x15
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x17
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x7
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x16
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x16
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x14
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x16
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x15
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x15
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x15
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x14
     addwf  player_y, 0
     movwf  LATD
     movlw  0x0A 
@@ -1816,6 +256,476 @@ draw_player
     movwf  LATE
     movlw  0x0A 
     call  add_tiny_delay 
+    movlw  0x14
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x14
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xe
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xe
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xe
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xe
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xe
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xd
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xc
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xf
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xb
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x10
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x7
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x7
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x13
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x7
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x7
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x6
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
     movlw  0x6
     addwf  player_y, 0
     movwf  LATD
@@ -1841,56 +751,6 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x15
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x18
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x6
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
     movlw  0x6
     addwf  player_x, 0
     movwf  LATE
@@ -1901,7 +761,7 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x13
+    movlw  0x7
     addwf  player_x, 0
     movwf  LATE
     movlw  0x0A 
@@ -1931,56 +791,6 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x16
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x18
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x5
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
     movlw  0x5
     addwf  player_x, 0
     movwf  LATE
@@ -2001,7 +811,7 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x13
+    movlw  0x7
     addwf  player_x, 0
     movwf  LATE
     movlw  0x0A 
@@ -2037,56 +847,6 @@ draw_player
     movlw  0x0A 
     call  add_tiny_delay 
     movlw  0x4
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x17
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x18
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x4
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
     addwf  player_y, 0
     movwf  LATD
     movlw  0x0A 
@@ -2131,6 +891,56 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
+    movlw  0x8
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x3
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x9
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x3
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0xa
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x3
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x11
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x3
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x12
+    addwf  player_x, 0
+    movwf  LATE
+    movlw  0x0A 
+    call  add_tiny_delay 
+    movlw  0x3
+    addwf  player_y, 0
+    movwf  LATD
+    movlw  0x0A 
+    call  add_tiny_delay 
     movlw  0x13
     addwf  player_x, 0
     movwf  LATE
@@ -2181,47 +991,6 @@ draw_player
     movwf  LATD
     movlw  0x0A 
     call  add_tiny_delay 
-    movlw  0x18
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x19
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1a
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x1b
-    addwf  player_x, 0
-    movwf  LATE
-    movlw  0x0A 
-    call  add_tiny_delay 
-    movlw  0x3
-    addwf  player_y, 0
-    movwf  LATD
-    movlw  0x0A 
-    call  add_tiny_delay 
-
     return
     
     

@@ -34,20 +34,20 @@ setup	clrf	TRISF
 	movwf	onevolt
 	movlw	0x0
 	movwf	grid_iter
-	movlw	0x64
+	movlw	0x6F
 	movwf	player_score
 	movlw	0x00
 	movwf	gamestate
 	
 	; ******* Main programme ****************************************
-start 	call	display_score
+start 	
 	call	level1_table
 	call	hexvoltage_table
 	call	start_int	
 	
 begin
 	movlw	0x00
-	cpfseq	gamestate	; compare if it is in gamestate 0 (start screen)
+	cpfseq	gamestate	; check if it is in gamestate 0 (start screen)
 	goto	main_game
 	goto	startscreen
 	
@@ -56,8 +56,9 @@ startscreen
 	goto	begin
 	
 main_game
+	call	display_score
 	movlw	0x01
-	cpfseq	gamestate	; compare if it is in gamestate 1 (play screen)
+	cpfseq	gamestate	; check if it is in gamestate 1 (play screen)
 	goto	endscreen
 	goto	playscreen
 	
