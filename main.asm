@@ -1,12 +1,12 @@
 #include p18f87k22.inc
 #include constants.inc
-	global	enable_bit, setup, start, grid_iter, onevolt, start2, begin , gamestate
+	global	enable_bit, setup, start, grid_iter, onevolt, begin , gamestate
 	extern	UART_Setup, UART_Transmit_Message  ; external UART subroutines
 	extern  LCD_Setup, LCD_Write_Message, LCD_clear, LCD_row_shift	    ; external LCD subroutines
 	extern	draw_grids, keypad_input, start_int
 	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex, draw_item
 	extern	level1_table, hexvoltage_table, render_graphics, draw_endscreen
-	extern	player_score
+	extern	player_score, display_score
 	
 	
 acs0	udata_acs   ; reserve data space in access ram
@@ -34,13 +34,14 @@ setup	clrf	TRISF
 	movwf	onevolt
 	movlw	0x0
 	movwf	grid_iter
-	movlw	0x6F
+	movlw	0x64
 	movwf	player_score
 	movlw	0x00
 	movwf	gamestate
 	
 	; ******* Main programme ****************************************
-start 	call	level1_table
+start 	call	display_score
+	call	level1_table
 	call	hexvoltage_table
 	call	start_int	
 	

@@ -3,7 +3,7 @@
 
     global  keypad_input, final_hex
     extern  add_tiny_delay, draw_player, player_x, player_y, enable_bit, setup, start
-    extern  player_gridhex, grid_value_out, player_score, display_start_screen, start2, begin
+    extern  player_gridhex, grid_value_out, player_score, display_start_screen, begin
     extern  gamestate
 
 acs0	udata_acs   ; reserve data space in access ram
