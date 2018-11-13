@@ -35,6 +35,8 @@
       <itemPath>keypad.asm</itemPath>
       <itemPath>interrupt.asm</itemPath>
       <itemPath>constants.inc</itemPath>
+      <itemPath>score_display.asm</itemPath>
+      <itemPath>one.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
