@@ -30,7 +30,7 @@ def get_voltages(M, x_i, y_i):
     rows = len(M)
     cols = len(M[0])
     voltages = [[x_i+j, (y_i+rows-i)] for i in range(rows)
-                for j in range(cols) if M[i][j] > 0.3]
+                for j in range(cols) if M[i][j] > 0.5]
     return voltages
 
 
@@ -43,14 +43,14 @@ def convert_to_asm(v, filename):
     
     for i,j in v:
         file.write("movlw  " + i + "\n")
-        file.write("addwf  player_x, 0" + "\n")
+        file.write("addwf  digit_x, 0" + "\n")
         file.write("movwf  " + "LATE" + "\n")
-        file.write("movlw  0x01 \n")
+        file.write("movlw  0x0A \n")
         file.write("call  add_tiny_delay \n")
         file.write("movlw  " + j + "\n")
-        file.write("addwf  player_y, 0" + "\n")
+#        file.write("addwf  player_y, 0" + "\n")
         file.write("movwf  " + "LATD" + "\n")
-        file.write("movlw  0x01 \n")
+        file.write("movlw  0x0A \n")
         file.write("call  add_tiny_delay \n")        
     file.close()     
     
@@ -73,15 +73,14 @@ def generate_xanimate():
             file.write("call  add_tiny_delay \n")  
     file.close()       
 
-    
-M = png_to_coords("../pngs/x2.png")    
-voltages = get_voltages(M, 1, 0)     
+M = png_to_coords("../pngs/0.png")    
+voltages = get_voltages(M, 0, 216)     
 x,y = zip(*voltages)
 plt.scatter(x,y,c='b',marker='.')
 plt.show()
 
 hex_voltages = convert_to_hex(voltages)
-convert_to_asm(hex_voltages, "../asm/x")
+convert_to_asm(hex_voltages, "../asm/0")
 
 #M = png_to_coords("../pngs/x.png")    
 #voltages = get_voltages(M, 0, 0)     
