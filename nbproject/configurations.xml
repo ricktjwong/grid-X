@@ -19,26 +19,32 @@
           <itemPath>four.asm</itemPath>
           <itemPath>one.asm</itemPath>
           <itemPath>nine.asm</itemPath>
-          <itemPath>six.asm</itemPath>
           <itemPath>seven.asm</itemPath>
+          <itemPath>six.asm</itemPath>
           <itemPath>three.asm</itemPath>
           <itemPath>two.asm</itemPath>
           <itemPath>zero.asm</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="grid_sprites" projectFiles="true">
+          <itemPath>player.asm</itemPath>
+          <itemPath>wall.asm</itemPath>
+          <itemPath>item.asm</itemPath>
+          <itemPath>grids.asm</itemPath>
+          <itemPath>goal.asm</itemPath>
         </logicalFolder>
-        <itemPath>grids.asm</itemPath>
+        <logicalFolder name="f3" displayName="splash_screens" projectFiles="true">
+          <itemPath>startscreen.asm</itemPath>
+          <itemPath>endscreen.asm</itemPath>
+        </logicalFolder>
         <itemPath>graphics.asm</itemPath>
-        <itemPath>item.asm</itemPath>
-        <itemPath>player.asm</itemPath>
-        <itemPath>startscreen.asm</itemPath>
-        <itemPath>goal.asm</itemPath>
-        <itemPath>wall.asm</itemPath>
-        <itemPath>endscreen.asm</itemPath>
+        <itemPath>score_display.asm</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Tables" projectFiles="true">
-        <itemPath>hexvoltage_table.asm</itemPath>
         <itemPath>level1.asm</itemPath>
+        <itemPath>mapmatrix_level2.asm</itemPath>
+        <itemPath>level2.asm</itemPath>
+        <itemPath>q_table.asm</itemPath>
+        <itemPath>mapmatrix_level1.asm</itemPath>
       </logicalFolder>
       <itemPath>config.asm</itemPath>
       <itemPath>main.asm</itemPath>
@@ -46,7 +52,8 @@
       <itemPath>keypad.asm</itemPath>
       <itemPath>interrupt.asm</itemPath>
       <itemPath>constants.inc</itemPath>
-      <itemPath>score_display.asm</itemPath>
+      <itemPath>agent.asm</itemPath>
+      <itemPath>actions.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -70,7 +77,7 @@
         <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>MPASMWIN</languageToolchain>
         <languageToolchainVersion>5.81</languageToolchainVersion>
-        <platform>4</platform>
+        <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.0.40"/>
