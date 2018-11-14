@@ -103,11 +103,9 @@ end_graphics
 	cpfslt	counter
 	goto	increment_grid_iter
 	bra	render_graphics
-rejoin
-	return
 	
 increment_grid_iter
 	clrf	counter
 	incf	grid_iter
-	goto	rejoin
+	return
 	end

@@ -3,8 +3,8 @@
 	global	enable_bit, grid_iter, gamestate
 	extern	draw_grids, start_int
 	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex
-	extern	level1_table, hexvoltage_table, render_graphics, draw_endscreen
-	extern	player_score, display_score
+	extern	level1_table, mapmatrix_level1, render_graphics, draw_endscreen
+	extern	player_score, display_score, q_table_level1, agent_learn
 	
 acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
@@ -17,9 +17,7 @@ rst	code	0    ; reset vector
 main	code
 	
 	; ******* Programme Setup Code ***********************
-setup	clrf	TRISF
-	clrf	LATF
-	movlw	0x04
+setup	movlw	0x04
 	movwf	enable_bit
 	movlw   0x1b
 	movwf   player_x
@@ -35,8 +33,10 @@ setup	clrf	TRISF
 	
 	; ******* Main programme ****************************************
 start 	
+	call	q_table_level1
+	call	agent_learn
 	call	level1_table
-	call	hexvoltage_table
+	call	mapmatrix_level1
 	call	start_int	
 	
 begin
@@ -59,7 +59,6 @@ main_game
 playscreen
 	call	draw_grids
 	call	draw_player
-	movff	player_score, PORTF
 	goto	begin
 
 endscreen

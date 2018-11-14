@@ -8,7 +8,6 @@ storage     res 1
 mapmatrix2	    code
 
 mapmatrix_level2
-
      movlb  8
      lfsr   FSR0, 0x880
 

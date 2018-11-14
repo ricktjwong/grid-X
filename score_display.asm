@@ -69,59 +69,68 @@ check_display
 	    movwf	check_tmp
 	    movlw	0x00
 	    cpfseq	check_tmp
-	    return
+	    bra		check_one
 	    movf	digit_pos, W
 	    call	draw_zero
-	    
-	    movlw	0x01
-	    cpfseq	check_tmp
 	    return
+	    
+check_one   movlw	0x01
+	    cpfseq	check_tmp
+	    bra		check_two
 	    movf	digit_pos, W
 	    call	draw_one
-	    
-	    movlw	0x02
-	    cpfseq	check_tmp
 	    return
+	    
+check_two   movlw	0x02
+	    cpfseq	check_tmp
+	    bra		check_three
 	    movf	digit_pos, W
 	    call	draw_two
-	    
-	    movlw	0x03
-	    cpfseq	check_tmp
 	    return
+	    
+check_three movlw	0x03
+	    cpfseq	check_tmp
+	    bra		check_four
 	    movf	digit_pos, W
 	    call	draw_three
-	    
-	    movlw	0x04
-	    cpfseq	check_tmp
 	    return
+	    
+check_four  movlw	0x04
+	    cpfseq	check_tmp
+	    bra		check_five
 	    movf	digit_pos, W
 	    call	draw_four
-	    
-	    movlw	0x05
-	    cpfseq	check_tmp
 	    return
+	    
+check_five  movlw	0x05
+	    cpfseq	check_tmp
+	    bra		check_six
 	    movf	digit_pos, W
 	    call	draw_five
-	    
-	    movlw	0x06
-	    cpfseq	check_tmp
 	    return
+	    
+check_six   movlw	0x06
+	    cpfseq	check_tmp
+	    bra		check_seven
 	    movf	digit_pos, W
 	    call	draw_six
-	    
-	    movlw	0x07
-	    cpfseq	check_tmp
 	    return
+	    
+check_seven movlw	0x07
+	    cpfseq	check_tmp
+	    bra		check_eight
 	    movf	digit_pos, W
 	    call	draw_seven
-	    
-	    movlw	0x08
-	    cpfseq	check_tmp
 	    return
+	    
+check_eight movlw	0x08
+	    cpfseq	check_tmp
+	    bra		check_nine
 	    movf	digit_pos, W
 	    call	draw_eight
+	    return
 	    
-	    movlw	0x09
+check_nine  movlw	0x09
 	    cpfseq	check_tmp
 	    return
 	    movf	digit_pos, W
