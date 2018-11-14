@@ -20,7 +20,8 @@ class Agent():
         one is optimal
         """
         self.actions = actions
-        self.learning_rate = 0.1
+        self.epsilon = 0.01
+        self.learning_rate = 0.01
         self.discount_factor = 0.9
         self.q_table = [[[0.0 for i in range(len(self.actions))]
                         for i in range(N_rows)]
@@ -31,7 +32,7 @@ class Agent():
         Get action by taking max of the q_values stored in the q_value table
         for a particular state
         """
-        if np.random.rand() < 0.01:
+        if np.random.rand() < self.epsilon:
             action = np.random.choice([0, 1, 2, 3])
         else:
             state_actions = self.q_table[state[0]][state[1]]
@@ -49,4 +50,4 @@ class Agent():
         """
         q_0 = self.q_table[state[0]][state[1]][action]
         q_1 = reward + self.discount_factor * max(self.q_table[next_state[0]][next_state[1]])
-        self.q_table[state[0]][state[1]][action] += 0.01 * (q_1 - q_0)
+        self.q_table[state[0]][state[1]][action] += self.learning_rate * (q_1 - q_0)

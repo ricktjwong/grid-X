@@ -7,6 +7,8 @@ Created on Thu Nov  8 22:47:45 2018
 """
 
 import q_agent as q
+import numpy as np
+import random
 import matplotlib.pyplot as plt
 
 def env():
@@ -39,8 +41,8 @@ def grid_rewards():
     """
     Store reward of going into each cell
     """
-    grid = [[-1. for i in range(5)] for i in range(5)]
-    grid[0][1] = 29.
+    grid = [[-3. for i in range(5)] for i in range(5)]
+    grid[0][1] = 9.
     grid[0][4] = 10.
     grid[3][1] = 9.
     return grid
@@ -80,30 +82,41 @@ scores = []
 grid = env()
 agent = q.Agent([0, 1, 2, 3], 5, 5)
 
-for i in range(3000):
+for i in range(10000):
     """
     If the player steps into a cell and collects the item worth +9 points, we
     need to remove the item from that cell, and the reward for moving into
     that cell is now -3
     """
     rewards = grid_rewards()
-    state = [4, 0]
+#    states = [[0, 0], [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [1, 3], [2, 2], [2, 4], [3, 0], [3, 1], [3, 2], [3, 4], [4, 0], [4, 1], [4, 2], [4, 3], [4, 4]]
+#    states = [[4, 0], [1, 3]]
+    states = [[4, 0]]
     score = 0
     actions = []
-    while (state != [0, 4]):
-        action = agent.get_action(state)
-        actions.append(action)
-        next_state = move(grid, state, action)
-        reward = rewards[next_state[0]][next_state[1]]
-        score += reward
-        if reward == 9. or reward == 29.:
-            rewards[next_state[0]][next_state[1]] = -1.
-        agent.q_learn(reward, action, state, next_state)
-        state = next_state
-    scores.append(score)
+#    state = random.choice(states)
+    for state in states:
+        while (state != [0, 4]):
+            action = agent.get_action(state)
+            actions.append(action)
+            next_state = move(grid, state, action)
+            reward = rewards[next_state[0]][next_state[1]]
+            score += reward
+            if reward == 9. or reward == 100.:
+                rewards[next_state[0]][next_state[1]] = -3.
+            agent.q_learn(reward, action, state, next_state)
+            state = next_state
+        scores.append(score)
 
 print(scores)
 print(actions)
 
-#x = [i for i in range(len(scores))]
-#plt.scatter(x, scores)
+rows = []
+for i in range(5):
+    cols = []
+    for j in range(5):
+        cols.append(agent.q_table[i][j].index(max(agent.q_table[i][j])))
+    rows.append(cols)
+print(np.array(rows))
+x = [i for i in range(len(scores))]
+plt.scatter(x, scores)
