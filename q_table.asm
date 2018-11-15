@@ -14,14 +14,19 @@ q_table_level1
     movlw	0x00
     movwf	counter
     
-    movlb	4		    ; select bank 4
-    lfsr	FSR2, 0x480	    ; point FSR2 to bank 4
-    
 populate_q_table
-    movf	counter, W
-    movff	initial_q, PLUSW2
+    movlb	4		    ; select bank 4
+    lfsr	FSR2, 0x480	    ; store low byte in FSR2 bank 4
+    movf	counter, W	    
+    movff	counter, PLUSW2
+    
+    movlb	5		    ; select bank 5
+    lfsr	FSR2, 0x580	    ; store high byte in FSR2 bank 5
+    movf	counter, W	    
+    movff	counter, PLUSW2
+    
     incf	counter
-    movlw	0xC4
+    movlw	0xA4
     cpfseq	counter
     bra		populate_q_table
     return
