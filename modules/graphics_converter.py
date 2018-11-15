@@ -73,14 +73,14 @@ def generate_xanimate():
             file.write("call  add_tiny_delay \n")  
     file.close()       
 
-M = png_to_coords("../pngs/negative.png")    
-voltages = get_voltages(M, 81, 216)     
+M = png_to_coords("../pngs/score.png")    
+voltages = get_voltages(M, 0, 216)     
 x,y = zip(*voltages)
 plt.scatter(x,y,c='b',marker='.')
 plt.show()
 
 hex_voltages = convert_to_hex(voltages)
-convert_to_asm(hex_voltages, "../asm/negative")
+convert_to_asm(hex_voltages, "../asm/score")
 
 #M = png_to_coords("../pngs/x.png")    
 #voltages = get_voltages(M, 0, 0)     
