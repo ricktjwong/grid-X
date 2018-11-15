@@ -24,6 +24,7 @@
           <itemPath>three.asm</itemPath>
           <itemPath>two.asm</itemPath>
           <itemPath>zero.asm</itemPath>
+          <itemPath>negative.asm</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="grid_sprites" projectFiles="true">
           <itemPath>player.asm</itemPath>
@@ -38,6 +39,7 @@
         </logicalFolder>
         <itemPath>graphics.asm</itemPath>
         <itemPath>score_display.asm</itemPath>
+        <itemPath>score.asm</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Tables" projectFiles="true">
         <itemPath>level1.asm</itemPath>
