@@ -4,7 +4,7 @@
     global  display_score
     extern  player_score, draw_zero, draw_one, draw_two, draw_three, draw_four
     extern  draw_five, draw_six, draw_seven, draw_eight, draw_nine
-    extern  draw_negative
+    extern  draw_negative, draw_score
 
 acs0	udata_acs	; reserve data space in access ram
 	
@@ -19,6 +19,7 @@ and_tmp		res 1
 score_display	code
 	
 display_score
+	    call    draw_score
 	    movff   player_score, ps_tmp
 	    movlw   0x80
 	    andwf   ps_tmp, W

@@ -26,7 +26,7 @@ setup	movlw	0x04
 	movwf	player_gridhex
 	movlw	0x0
 	movwf	grid_iter
-	movlw	0x01
+	movlw	0x1D
 	movwf	player_score
 	movlw	0x00
 	movwf	gamestate

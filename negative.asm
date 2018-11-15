@@ -3,7 +3,6 @@
 	extern	add_tiny_delay
 
 acs0	  udata_acs
-digit_x   res 1
 	
 negative  code 
 	
