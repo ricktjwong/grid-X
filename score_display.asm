@@ -4,6 +4,7 @@
     global  display_score
     extern  player_score, draw_zero, draw_one, draw_two, draw_three, draw_four
     extern  draw_five, draw_six, draw_seven, draw_eight, draw_nine
+    extern  draw_negative
 
 acs0	udata_acs	; reserve data space in access ram
 	
@@ -12,15 +13,27 @@ tens		res 1	; reserve one byte to store tenths place
 hundreds	res 1	; reserve one byte to store hundredths place
 ps_tmp		res 1	; player_score temporary storage
 check_tmp	res 1	; stores the ones/tenths/hundredths place for checking
-digit_pos	res 1	; variable to keep track of which x_coord to print digit 
+digit_pos	res 1	; variable to keep track of which x_coord to print digit
+and_tmp		res 1
 
 score_display	code
 	
 display_score
 	    movff   player_score, ps_tmp
+	    movlw   0x80
+	    andwf   ps_tmp, W
+	    movwf   and_tmp
+	    movlw   0x80
+	    cpfslt  and_tmp
+	    call    complement_and_drawneg
 	    call    extract_hundreds
 	    call    extract_tens_ones
 	    call    display_digits
+	    return
+	    
+complement_and_drawneg    
+	    negf	ps_tmp
+	    call	draw_negative
 	    return
 	    
 extract_hundreds    

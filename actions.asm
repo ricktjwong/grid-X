@@ -7,6 +7,7 @@
     
 acs0	    udata_acs			; named variables in access ram	
 destroy_store	res 1
+overflow_offset	res 1
 
 actions	    code
 	    
@@ -18,7 +19,7 @@ move_up
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
-	subwf	player_score
+	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -34,7 +35,7 @@ move_down
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
-	subwf	player_score
+	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -50,7 +51,7 @@ move_right
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
-	subwf	player_score
+	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -66,7 +67,7 @@ move_left
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
-	subwf	player_score
+	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -102,6 +103,15 @@ destroy_item
 handle_D_button
 	movlw	0x01
 	movwf	gamestate
+	return
+	
+handle_overflow
+	movlw	0xFF
+	movwf	overflow_offset
+	movf	player_score, W
+	subwf	overflow_offset, W
+	movwf	player_score
+	incf	player_score
 	return
 
     end

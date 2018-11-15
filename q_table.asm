@@ -18,12 +18,12 @@ populate_q_table
     movlb	4		    ; select bank 4
     lfsr	FSR2, 0x480	    ; store low byte in FSR2 bank 4
     movf	counter, W	    
-    movff	counter, PLUSW2
+    movff	initial_q, PLUSW2
     
     movlb	5		    ; select bank 5
     lfsr	FSR2, 0x580	    ; store high byte in FSR2 bank 5
     movf	counter, W	    
-    movff	counter, PLUSW2
+    movff	initial_q, PLUSW2
     
     incf	counter
     movlw	0xA4

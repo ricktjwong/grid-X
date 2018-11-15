@@ -8,6 +8,7 @@ digit_x   res 1
 two	code  
 
 draw_two
+    movwf  digit_x
     movlw  0xa
     addwf  digit_x, 0
     movwf  LATE

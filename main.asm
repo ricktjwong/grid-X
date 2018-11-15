@@ -26,7 +26,7 @@ setup	movlw	0x04
 	movwf	player_gridhex
 	movlw	0x0
 	movwf	grid_iter
-	movlw	0x6F
+	movlw	0x01
 	movwf	player_score
 	movlw	0x00
 	movwf	gamestate
@@ -34,7 +34,7 @@ setup	movlw	0x04
 	; ******* Main programme ****************************************
 start 	
 	call	q_table_level1
-	call	agent_learn
+;	call	agent_learn
 	call	level1_table
 	call	mapmatrix_level1
 	call	start_int	
