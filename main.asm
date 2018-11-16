@@ -10,7 +10,8 @@
 acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
 grid_iter    res 1
-gamestate res 1
+gamestate    res 1
+has_loadedlevel	res 1
   
 rst	code	0    ; reset vector
 	goto	setup
@@ -19,8 +20,7 @@ main	code
 
 	
 	; ******* Programme Setup Code ***********************
-setup	call	q_table_level1
-setup2	movlw	0x04
+setup	movlw	0x04
 	movwf	enable_bit
 	movlw   0x1b
 	movwf   player_x
@@ -51,20 +51,20 @@ startscreen
 	goto	begin
 	
 main_game
+level_select
 	call	display_score
-	movlw	0x01
-	cpfseq	gamestate	; check if it is in gamestate 1 (play screen)
-	goto	endscreen
-	goto	playscreen
-	
+	movlw	0x04
+	cpfseq	gamestate	; check if gamestate  == 4
+	goto	playscreen	; else display playscreen
+	goto	endscreen	; if == 4 , display end screen
+
 playscreen
 	call	draw_grids
 	call	draw_player
-	call	agent_learn
 	goto	begin
 
 endscreen
-;	call	draw_endscreen
-	goto	setup2
+	call	draw_endscreen
+	goto	setup
 
 	end

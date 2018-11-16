@@ -4,6 +4,7 @@
 	extern	item_x, item_y, draw_item, grid_iter
 	extern	wall_x, wall_y, draw_wall
 	extern	goal_x, goal_y, draw_goal
+	extern	fire_x, fire_y, draw_fire
 	
 acs0		udata_acs
 onevolt		res 1
@@ -38,6 +39,12 @@ check_wall
 	xorwf	grid_value_out, 0	; Store result of XOR in W		
 	btfsc	STATUS, Z
 	goto	set_wall_xy
+	
+check_fire
+	movlw	fire
+	xorwf	grid_value_out, 0	; Store result of XOR in W		
+	btfsc	STATUS, Z
+	goto	set_fire_xy	
 	
 check_goal
 	movlw	goal
@@ -79,6 +86,23 @@ set_wall_xy
 	
 	call	draw_wall
 	goto	end_graphics
+	
+set_fire_xy
+	movf	pos, W
+	movff	PLUSW0, yx
+	movlw	0x0F
+	andwf	yx, 0			; logical AND yx with 00001111 to get only low nibble stored in W
+	mulwf	onevolt
+	movff   PRODL, fire_x		; wall_x now holds x coordinates
+	
+	swapf	yx, 1			; swap yx (to xy) result stored in yx
+	movlw	0x0F
+	andwf	yx, 0			; logical AND. Result stored in W.
+	mulwf	onevolt
+	movff   PRODL, fire_y		; wall_y now holds high nibbles in original yx. Holds y coordinates
+	
+	call	draw_fire
+	goto	end_graphics	
 	
 set_goal_xy
 	movf	pos, W

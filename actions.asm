@@ -4,7 +4,7 @@
     global  handle_D_button, reward
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out
-    extern  player_score, draw_player
+    extern  player_score, draw_player, level2_table
     
 acs0	    udata_acs			; named variables in access ram	
 destroy_store	res 1
@@ -69,6 +69,7 @@ move_up
 	movf	player_gridhex, W
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
+	call	check_fire
 	call	check_goal
 	movlw	move_penalty
 	addwf	reward, F
@@ -87,6 +88,7 @@ move_down
 	movf	player_gridhex, W
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
+	call	check_fire
 	call	check_goal
 	movlw	move_penalty
 	addwf	reward, F
@@ -105,6 +107,7 @@ move_right
 	movf	player_gridhex, W
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
+	call	check_fire
 	call	check_goal
 	movlw	move_penalty
 	addwf	reward, F
@@ -123,6 +126,7 @@ move_left
 	movf	player_gridhex, W
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
+	call	check_fire
 	call	check_goal
 	movlw	move_penalty
 	addwf	reward, F
@@ -134,6 +138,13 @@ move_left
 	call	draw_player
 	return
 	  
+check_fire
+	movlw	fire
+	xorwf	grid_value_out, 0	; Store result of XOR in W		
+	btfsc	STATUS, Z
+	call	add_fire_penalty
+	return
+	
 check_item_pickup
 	movlw	item
 	xorwf	grid_value_out, 0	; Store result of XOR in W		
@@ -144,10 +155,37 @@ check_item_pickup
 check_goal
 	movlw	goal
 	xorwf	grid_value_out, 0	; Store result of XOR in W		
-	btfsc	STATUS, Z
-	movlw	0x02
-	btfsc	STATUS, Z
-	movwf	gamestate
+	btfsc	STATUS, Z		; if collide with goal, do not skip
+	call	change_level		; collide with goal
+	return				; else return
+	
+change_level
+level2_
+	movlw	0x01
+	cpfseq	gamestate		; check if current gamestate is 1
+	bra	level3_			; if != 1 then check for level 2 3 4 ...
+	movlw	0x02			; if = 1 (AND since collided with goal) 
+	movwf	gamestate		; set gamestate = 2 to move to level 2
+	call	level2_table		; Repopulate table with level2 values with FSR1
+	movlw	0x18
+	movwf	player_gridhex		; Set player hexgrid position for level 2
+	movlw	0x51
+	movwf	player_x		; Set player x graphics position for level 2
+	movlw	0x51
+	movwf	player_y		; Set player y graphics position for level 2
+	return
+level3_
+	movlw	0x02		
+	cpfseq	gamestate		; check if current gamestate is 2
+	bra	level4_			; if != 2 then check for level 3 4 ...
+	movlw	0x03			; if = 2 (AND since collided with goal) 
+	movwf	gamestate		; set gamestate = 3 to move to level 3
+;	call	level3_table		; Repopulate table with level2 values with FSR1
+	return
+	
+level4_
+	movlw	0x04			; Last level (endscreen)
+	movwf	gamestate		; set gamestate = 4 to move to level 4 (endscreen)
 	return
 	
 destroy_item
@@ -156,6 +194,12 @@ destroy_item
 	movf	player_gridhex, W
 	movff	destroy_store, PLUSW1
 	movlw	item_reward
+	movwf	reward
+	addwf	player_score
+	return
+	
+add_fire_penalty
+	movlw	fire_reward
 	movwf	reward
 	addwf	player_score
 	return
