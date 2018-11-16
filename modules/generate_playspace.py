@@ -92,36 +92,34 @@ buildspace(7 , wall , map_array)
 
 """ row 1 """
 buildspace(1, wall, map_array)
-buildspace(4, empty, map_array)
-buildspace(1, item, map_array)
+buildspace(5, empty, map_array)
 buildspace(1, wall, map_array)
 
 """ row 2 """
 buildspace(1, wall, map_array)
 buildspace(1, empty, map_array)
-buildspace(3, wall, map_array)
 buildspace(1, item, map_array)
+buildspace(1, empty, map_array)
+buildspace(1, wall, map_array)
+buildspace(1, empty, map_array)
 buildspace(1, wall, map_array)
 
 """ row 3 """
-buildspace(1, wall, map_array)
-buildspace(5, empty, map_array)
+buildspace(4, wall, map_array)
+buildspace(2, empty, map_array)
 buildspace(1, wall, map_array)
 
 """ row 4 """
 buildspace(1, wall, map_array)
-buildspace(1, empty, map_array)
-buildspace(3, wall, map_array)
-buildspace(1, empty, map_array)
-buildspace(1, wall, map_array)
-
+buildspace(4, empty, map_array)
+buildspace(2, wall, map_array)
 
 """ row 5 """
 buildspace(1, wall, map_array)
+buildspace(1, empty, map_array)
+buildspace(1, item, map_array)
 buildspace(2, empty, map_array)
 buildspace(1, goal, map_array)
-buildspace(1, empty, map_array)
-buildspace(1, fire, map_array)
 buildspace(1, wall, map_array)
 
 """ row 6 """
@@ -129,6 +127,6 @@ buildspace(7 , wall , map_array)
 
 #%%
 """ output to .asm files """
-create_level(map_array, "level2")
+create_level(map_array, "level1")
 #create_mapmatrix(9, "mapmatrix_level2")
 
