@@ -3,5 +3,5 @@
     CONSTANT item=0x04
     CONSTANT onevolt_hex=0x1b
     CONSTANT move_penalty = 0xFD
-    CONSTANT item_reward = 0x07
+    CONSTANT item_reward = 0x0C
     CONSTANT goal_reward = 0x63

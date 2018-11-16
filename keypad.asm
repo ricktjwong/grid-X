@@ -3,13 +3,12 @@
 
     global  keypad_checks, final_hex
     extern  add_tiny_delay, enable_bit, player_gridhex
-    extern  move_up, move_down, move_left, move_right, handle_D_button
+    extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
 
 acs0		udata_acs		; reserve data space in access ram
 hashmap		res 1
 final_hex	res 1
 new_gridhex	res 1
-grid_value	res 1
 
 keypad		code
 		
@@ -126,46 +125,6 @@ second_check_left
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
 	call	third_check_left
-	return
-	
-third_check_up
-	movlw	0x07
-	addwf	player_gridhex, 0	; store new position in W
-	movff	PLUSW1, grid_value	; Get byte from FSR1
-	movlw	wall
-	xorwf	grid_value		
-	btfss	STATUS, Z
-	call	move_up
-	return
-	
-third_check_down
-	movlw	0x07
-	subwf	player_gridhex, 0	; store new position in W
-	movff	PLUSW1, grid_value	; Get byte from FSR1
-	movlw	wall
-	xorwf	grid_value		
-	btfss	STATUS, Z
-	call	move_down
-	return
-	
-third_check_right
-	movlw	0x01
-	addwf	player_gridhex, 0	; store new position in W
-	movff	PLUSW1, grid_value	; Get byte from FSR1
-	movlw	wall
-	xorwf	grid_value		
-	btfss	STATUS, Z
-	call	move_right
-	return
-	
-third_check_left
-	movlw	0x01
-	subwf	player_gridhex, 0	; store new position in W
-	movff	PLUSW1, grid_value	; Get byte from FSR1
-	movlw	wall
-	xorwf	grid_value		
-	btfss	STATUS, Z
-	call	move_left
 	return
 	
     end

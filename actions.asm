@@ -1,6 +1,7 @@
 #include p18f87k22.inc
 #include constants.inc
-    global  move_up, move_down, move_left, move_right, handle_D_button
+    global  third_check_up, third_check_down, third_check_left, third_check_right
+    global  handle_D_button, reward
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out
     extern  player_score, draw_player
@@ -8,10 +9,61 @@
 acs0	    udata_acs			; named variables in access ram	
 destroy_store	res 1
 overflow_offset	res 1
+reward		res 1
+grid_value	res 1		
 
 actions	    code
 	    
+third_check_up
+	movlw	0x07
+	addwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		
+	btfss	STATUS, Z
+	call	move_up
+	btfsc	STATUS, Z
+	call	wall_penalty
+	return
+	
+third_check_down
+	movlw	0x07
+	subwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		
+	btfss	STATUS, Z
+	call	move_down
+	btfsc	STATUS, Z
+	call	wall_penalty
+	return
+	
+third_check_right
+	movlw	0x01
+	addwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		
+	btfss	STATUS, Z
+	call	move_right
+	btfsc	STATUS, Z
+	call	wall_penalty
+	return
+	
+third_check_left
+	movlw	0x01
+	subwf	player_gridhex, 0	; store new position in W
+	movff	PLUSW1, grid_value	; Get byte from FSR1
+	movlw	wall
+	xorwf	grid_value		
+	btfss	STATUS, Z
+	call	move_left
+	btfsc	STATUS, Z
+	call	wall_penalty
+	return	    
+	    
 move_up
+	clrf	reward
 	movlw	0x07
 	addwf	player_gridhex, 1	; store new position in F
 	movf	player_gridhex, W
@@ -19,6 +71,7 @@ move_up
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
+	addwf	reward, F
 	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
@@ -28,6 +81,7 @@ move_up
 	return
 	
 move_down
+	clrf	reward
 	movlw	0x07
 	subwf	player_gridhex, 1	; store new position in F
 	movf	player_gridhex, W
@@ -35,6 +89,7 @@ move_down
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
+	addwf	reward, F
 	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
@@ -44,6 +99,7 @@ move_down
 	return
 	
 move_right
+	clrf	reward
 	movlw	0x01
 	addwf	player_gridhex, 1	; store new position in F
 	movf	player_gridhex, W
@@ -51,6 +107,7 @@ move_right
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
+	addwf	reward, F
 	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
@@ -60,6 +117,7 @@ move_right
 	return
 	
 move_left
+	clrf	reward
 	movlw	0x01
 	subwf	player_gridhex, 1	; store new position in F
 	movf	player_gridhex, W
@@ -67,6 +125,7 @@ move_left
 	call	check_item_pickup
 	call	check_goal
 	movlw	move_penalty
+	addwf	reward, F
 	addwf	player_score
 	movlw	0x00
 	movwf	enable_bit
@@ -97,6 +156,7 @@ destroy_item
 	movf	player_gridhex, W
 	movff	destroy_store, PLUSW1
 	movlw	item_reward
+	movwf	reward
 	addwf	player_score
 	return
 
@@ -112,6 +172,11 @@ handle_overflow
 	subwf	overflow_offset, W
 	movwf	player_score
 	incf	player_score
+	return
+	
+wall_penalty
+	movlw	move_penalty
+	addwf	reward, F
 	return
 
     end

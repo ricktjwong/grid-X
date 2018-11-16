@@ -5,6 +5,7 @@
 	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex
 	extern	level1_table, mapmatrix_level1, render_graphics, draw_endscreen
 	extern	player_score, display_score, q_table_level1, agent_learn
+	extern add_long_delay
 	
 acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
@@ -15,9 +16,11 @@ rst	code	0    ; reset vector
 	goto	setup
 	
 main	code
+
 	
 	; ******* Programme Setup Code ***********************
-setup	movlw	0x04
+setup	call	q_table_level1
+setup2	movlw	0x04
 	movwf	enable_bit
 	movlw   0x1b
 	movwf   player_x
@@ -33,8 +36,6 @@ setup	movlw	0x04
 	
 	; ******* Main programme ****************************************
 start 	
-	call	q_table_level1
-;	call	agent_learn
 	call	level1_table
 	call	mapmatrix_level1
 	call	start_int	
@@ -59,10 +60,11 @@ main_game
 playscreen
 	call	draw_grids
 	call	draw_player
+	call	agent_learn
 	goto	begin
 
 endscreen
-	call	draw_endscreen
-	goto	begin
+;	call	draw_endscreen
+	goto	setup2
 
 	end

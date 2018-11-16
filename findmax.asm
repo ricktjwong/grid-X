@@ -1,17 +1,17 @@
 #include p18f87k22.inc
-
-
-acs0	    udata_acs	     ; named variables in access ram	
-storage		   res 1
-current_H	   res 1     ; current iterator of q_H
-current_max_H	   res 1     ; current index of max q_H
-candidate_max_H    res 1
-candidate_L res 1
+	global find_max, q1_H, q2_H, q3_H, q4_H, q1_L, q2_L, q3_L, q4_L
+	global current_max_H, q_max_H, q_max_L
+    
+acs0		    udata_acs	    ; named variables in access ram
+current_H	    res 1	    ; current iterator of q_H
+current_max_H	    res 1	    ; current index of max q_H
+candidate_max_H	    res 1
+candidate_L	    res 1
  
-q1      res 1
-q2      res 1
-q3	res 1
-q4	res 1
+q1_H    res 1
+q2_H    res 1
+q3_H	res 1
+q4_H	res 1
 q1_L    res 1
 q2_L    res 1
 q3_L	res 1
@@ -20,67 +20,47 @@ q4_L	res 1
 q_max_H	res 1
 q_max_L	res 1
      
-rst	code	0    ; reset vector
-     
 findmax	    code
 
+find_max
 setup
     movlw   0x00
     movwf   candidate_L
     movwf   current_H
     movwf   current_max_H
     
-    movlw   0x03
-    movwf   q1
-    movlw   0x03
-    movwf   q2
-    movlw   0x03
-    movwf   q3
-    movlw   0x03
-    movwf   q4
+    movlb   3
+    lfsr    FSR0, 0x300
     
-    movlw   0x07
-    movwf   q1_L
-    movlw   0x07
-    movwf   q2_L
-    movlw   0x0A
-    movwf   q3_L
-    movlw   0x06
-    movwf   q4_L
+    movlb   3
+    lfsr    FSR1, 0x340
     
-    movlb   4
-    lfsr    FSR0, 0x480
-    
-    movlb   5
-    lfsr    FSR1, 0x580
-    
-    movff   q1, POSTINC0
-    movff   q2, POSTINC0
-    movff   q3, POSTINC0
-    movff   q4, POSTINC0
+    movff   q1_H, POSTINC0
+    movff   q2_H, POSTINC0
+    movff   q3_H, POSTINC0
+    movff   q4_H, POSTINC0
     
     movff   q1_L, POSTINC1
     movff   q2_L, POSTINC1
     movff   q3_L, POSTINC1
     movff   q4_L, POSTINC1
     
-    movlb   4
-    lfsr    FSR0, 0x480
+    movlb   3
+    lfsr    FSR0, 0x300
     
-    movlb   5
-    lfsr    FSR1, 0x580
+    movlb   3
+    lfsr    FSR1, 0x340
     
 start_
-    movff   POSTINC0, q_max_H	; Loads q1 into q_max_H
-    
+    movff   POSTINC0, q_max_H	; Loads q1 into q_max_H    
     
 compare_next
     movf    POSTINC0, W		; Temp storage for candidate q
     incf    current_H		; Increments current_H
     cpfsgt  q_max_H		; Compare if W < max_q_H 
     bra	    check_greater_equal		; if >= do not skip check for ==
+
 rejoin_H
-    
     movlw   0x03
     cpfseq  current_H		; if counter_H == 3
     bra	    compare_next	; Check next number
@@ -98,7 +78,6 @@ set_max
     movff   current_H, current_max_H
     goto    rejoin_H		; Rejoins main loop
     
-    
 check_low
     movf    current_max_H, W
     movff   PLUSW1, q_max_L	; Loads q1 into q_max_H
@@ -115,5 +94,14 @@ compare_L
     return    
     
 exit
+    movlb   3
+    lfsr    FSR0, 0x300
+    movlb   3
+    lfsr    FSR1, 0x340
+    
+    movf    current_max_H, W
+    movff   PLUSW0, q_max_H
+    movff   PLUSW1, q_max_L
+    return
     
     end
