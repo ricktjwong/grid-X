@@ -4,7 +4,7 @@
     extern  player_gridhex
     extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
     extern  find_max, q1_H, q2_H, q3_H, q4_H, q1_L, q2_L, q3_L, q4_L
-    extern  current_max_H, q_max_H, q_max_L, reward, display_score
+    extern  current_max_H, q_max_H, q_max_L, reward_L, reward_H, display_score
     
 acs0		    udata_acs
 fsr_start	    res 1
@@ -37,8 +37,6 @@ move
 get_action
     call    store_q_values			; store q values in format to find max
     call    find_max				; find max of q_table[state1][actions]
-    movlw   0x80		
-    xorwf   q_max_H, F				; represent back in 2's complement
     movff   player_gridhex, state1_gridhex	
     movff   q_max_H, state1_max_H		; store state 1 q value max H
     movff   q_max_L, state1_max_L		; store state 1 q value max L
@@ -47,15 +45,13 @@ get_action
     call    use_max_q				; move character based on maxQ
     call    store_q_values			; get new gridhex, and new q
     call    find_max				; find maxQ of state2
-    movlw   0x80	    
-    xorwf   q_max_H, F				; Represent back in 2's complement
     movff   q_max_H, state2_max_H
     movff   q_max_L, state2_max_L
     return
     
 store_q_values
-    movlb   4			; select bank 4
-    lfsr    FSR2, 0x480		; store low byte in FSR2 bank 4
+    movlb   4					; select bank 4
+    lfsr    FSR2, 0x480				; store low byte in FSR2 bank 4
     movlw   0x04
     mulwf   player_gridhex
     movff   PRODL, fsr_start
@@ -75,34 +71,26 @@ store_q_values
     movf    fsr_start, W
     movff   PLUSW2, q4_L 
     
-    movlb   5			; select bank 5
-    lfsr    FSR2, 0x580		; store low byte in FSR2 bank 5
+    movlb   5					; select bank 5
+    lfsr    FSR2, 0x580				; store low byte in FSR2 bank 5
     movlw   0x04
     mulwf   player_gridhex
     movff   PRODL, fsr_start
     
     movf    fsr_start, W
     movff   PLUSW2, q1_H
-    movlw   0x80
-    xorwf   q1_H, F
     
     incf    fsr_start
     movf    fsr_start, W
     movff   PLUSW2, q2_H
-    movlw   0x80
-    xorwf   q1_H, F
     
     incf    fsr_start
     movf    fsr_start, W
     movff   PLUSW2, q3_H
-    movlw   0x80
-    xorwf   q1_H, F
     
     incf    fsr_start
     movf    fsr_start, W
     movff   PLUSW2, q4_H 
-    movlw   0x80
-    xorwf   q1_H, F
     return
     
 use_max_q
@@ -141,33 +129,40 @@ check_q_value_right
     call    third_check_right
     return
     
+; *** qvalue_state1_action = qvalue_state1_action + learning_rate x	   *** ;
+; *** [reward + discount_rate x MAX(qvalue_state2) - qvalue_state1_action] *** ;
+; *** Take learning_rate = 1, discount_rate = 1				   *** ;
+    
 q_learn
-    movf    reward, W
-    addwf   state2_max_L, F
-    movlw   0x00
-    addwfc  state2_max_H, F
+    ; *** A = reward + 1 x MAX(qvalue_state2) *** ;
+    movf    reward_L, W				; move reward to WREG
+    addwf   state2_max_L, F			; add to state2_max_L
+    movf    reward_H, W				; add carry to H
+    addwfc  state2_max_H, F			; add carry to state2_max_H
     
-    movf    state1_max_L, W
-    addwf   state2_max_L, F    
-    movf    state1_max_H, W
-    addwfc  state2_max_H, F
+    ; *** B = A + qvalue_state1_action (in 2's complement)		   *** ;
+    movf    state1_max_L, W			; add state1 max low byte to the
+    addwf   state2_max_L, F			; low byte of A
+    movf    state1_max_H, W			; add state1 max high byte to
+    addwfc  state2_max_H, F			; high byte of A
     
-    movlw   0x00
-    movwf   counter
+    movff   state2_max_L, state1_max_L
+    movff   state2_max_H, state1_max_H
     
-learning_rate_mul    
-    incf    counter
-    bcf	    STATUS, Z
-    rrcf    state2_max_H, F
-    rrcf    state2_max_L, F 
-    movlw   0x02
-    cpfslt  counter
-    bra	    learning_rate_mul
+    ; *** B - qvalue_state1_action *** ;
+    ; *** Perform negf on the 16bit state1_max_H:state1_max_L manually *** ;
+;    movlw   0x01
+;    subwf   state1_max_L, F
+;    movlw   0x00
+;    subwfb  state1_max_H, F
+;    comf    state1_max_L
+;    comf    state1_max_H
     
-    movf    state2_max_L, W
-    addwf   state1_max_L, F
-    movf    state2_max_H, W
-    addwfc  state1_max_H, F
+    ; Add B_low:B_high to negf(state1_max_H:state1_max_L)
+;    movf    state2_max_L, W
+;    addwf   state1_max_L, F
+;    movf    state2_max_H, W
+;    addwfc  state1_max_H, F
        
     return
     
@@ -179,16 +174,16 @@ update_q_table
     mulwf   state1_gridhex	    ; Mutiply gridhex value by 4 (up down left right)
     movf    PRODL, W		    ; Retrieve value (into W)
     addwf   current_max_H, W	    ; Offset by index value 
-    movff   state1_max_L, PLUSW2   ; update table with new q value for L bytes 
+    movff   state1_max_L, PLUSW2    ; update table with new q value for L bytes 
     
-    movlb   5			    ; select bank 4 for H bytes (reset FSR pointer)
+    movlb   5			    ; select bank 5 for H bytes (reset FSR pointer)
     lfsr    FSR2, 0x580		    ; reset at 0x580
     
     movlw   0x04
     mulwf   state1_gridhex	    ; Mutiply gridhex value by 4 (up down left right)
     movf    PRODL, W		    ; Retrieve value (into W)
     addwf   current_max_H, W	    ; Offset by index value 
-    movff   state1_max_H, PLUSW2   ; update table with new q value for H bytes 
+    movff   state1_max_H, PLUSW2    ; update table with new q value for H bytes 
     return
     
 reset_game_fsr

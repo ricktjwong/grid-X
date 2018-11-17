@@ -7,3 +7,9 @@
     CONSTANT item_reward = 0x0C
     CONSTANT goal_reward = 0x63
     CONSTANT fire_reward = 0xF9
+    
+    CONSTANT move_penalty_L = 0xFD 
+    CONSTANT move_penalty_H = 0xFF
+    CONSTANT fire_reward_L = 0xF9
+    CONSTANT fire_reward_H = 0xFF
+    
