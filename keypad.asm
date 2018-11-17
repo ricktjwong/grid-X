@@ -1,10 +1,11 @@
 #include p18f87k22.inc
 #include constants.inc
 
-    global  keypad_checks, final_hex
+    global  keypad_checks, final_hex, editor_mode
     extern  add_tiny_delay, enable_bit, player_gridhex
     extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
-
+    extern  gamestate, level_empty7
+    
 acs0		udata_acs		; reserve data space in access ram
 hashmap		res 1
 final_hex	res 1
@@ -46,6 +47,8 @@ keypad_input
 	return
     
 checkdown
+; Checks for button-press-down for : 2,4,6,8,D,1. Calls second check to prevent
+; microprocessor from registering multiple presses with enable bit.
 	movff	final_hex, PORTH
 	movlw	0xB7
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
@@ -78,16 +81,25 @@ checkdown
 	btfsc	STATUS, Z
 	return
 
-	movff	final_hex, PORTH
+	movff	final_hex, PORTH	; D button
 	movlw	0xEE
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	handle_D_button
 	return
 
+	movff	final_hex, PORTH	; 1 button
+	movlw	0x77
+	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
+	btfsc	STATUS, Z
+	bra	second_check_1
+	btfsc	STATUS, Z
+	return
+	
 	return
 
 checkup
+; Resets enable bit to allow buttons to be pressed again
 	movff	final_hex, PORTH
 	movlw	0xFF
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
@@ -98,20 +110,23 @@ checkup
 	return
 	
 	return
-	
+
+SecondChecks
 second_check_up
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
 	call	third_check_up
-	goto    rejoin
+	return
+	;goto    rejoin			; <-- should not need this rejoin?
 	
 second_check_down
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
 	call	third_check_down
-	goto	rejoin
+	return
+	;goto	rejoin
 	
 second_check_right
 	movf	STATUS, W
@@ -125,6 +140,21 @@ second_check_left
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
 	call	third_check_left
+	return
+
+second_check_1
+	movf	STATUS, W
+	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
+	btfss	STATUS, Z
+	call	editor_mode
+	return
+    
+editor_mode
+	movlw	0xFF
+	movwf	gamestate	    ; Enable map editor mode
+	call	level_empty7	    ; populates map with an empty 7x7 space with boundaries
+	movlw	0x00
+	movwf	enable_bit	    
 	return
 	
     end
