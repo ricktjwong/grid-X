@@ -49,6 +49,8 @@ begin
 	goto	startscreen
 	
 startscreen
+	movlw	0x77
+	movwf	gamestate
 	call	display_start_screen
 	movlw	0x77
 	cpfseq	gamestate
@@ -88,7 +90,10 @@ iter	clrf	player_score_L
 	call	agent_learn
 	call	draw_grids
 	call	draw_player
+	movlw	0x00
+	cpfseq	gamestate
 	goto	iter
+	goto	begin
 	
 qlearning_level_2
 	call	q_table_7x7
@@ -106,7 +111,10 @@ iter2	clrf	player_score_L
 	call	agent_learn
 	call	draw_grids
 	call	draw_player
+	movlw	0x00
+	cpfseq	gamestate
 	goto	iter2
+	goto	begin
 	
 check_qlearning_level_2
 	movlw	0x78

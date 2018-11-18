@@ -2,6 +2,7 @@
 #include constants.inc
     global  third_check_up, third_check_down, third_check_left, third_check_right
     global  handle_D_button, reward_L, reward_H, q_learning_mode, q_learning_mode_2
+    global  return_to_begin
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out
     extern  player_score, draw_player, level2_table
@@ -288,6 +289,11 @@ q_learning_mode
 	
 q_learning_mode_2
 	movlw	0x78
+	movwf	gamestate
+	return
+	
+return_to_begin
+	movlw	0x00
 	movwf	gamestate
 	return
 	
