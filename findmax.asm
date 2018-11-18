@@ -105,10 +105,18 @@ exit
     movf    current_max_H, W
     movff   PLUSW0, q_max_H
     movff   PLUSW1, q_max_L
+    
+    movlw   0x00
+    cpfseq  neg_count
+    bra	    handle_invert_back
+    bra	    final
+handle_invert_back
     movlw   0x04
     cpfseq  neg_count
-    bra	    final
-    call    invert_neg_back
+    bra	    sub_one
+    goto    invert_neg_back
+sub_one
+    call    sub_one_back
 final    
     return
     
@@ -182,7 +190,14 @@ invert_neg_back
     addwf   q_max_L, F
     movlw   0x00
     addwfc  q_max_H, F
-    return    
+    goto    final    
+    
+sub_one_back
+    movlw   0x01
+    subwf   q_max_L, F
+    movlw   0x00
+    subwf   q_max_H
+    return
     
 ; *** If number is negative, change to 0. If positive, add 1 to handle	   *** ;
 ; *** the case where positives are 0s e.g. 0, 0, 0, -1 -> 0, 0, 0, 0	   *** ;
@@ -213,7 +228,7 @@ handle_q1_positive
     movlw   0x01
     addwf   q1_L, F
     movlw   0x00
-    addwfc  q2_L, F
+    addwfc  q1_H, F
     return
     
 handle_q1_negative
@@ -225,7 +240,7 @@ handle_q2_positive
     movlw   0x01
     addwf   q2_L, F
     movlw   0x00
-    addwfc  q2_L, F
+    addwfc  q2_H, F
     return
     
 handle_q2_negative
@@ -238,7 +253,7 @@ handle_q3_positive
     movlw   0x01
     addwf   q3_L, F
     movlw   0x00
-    addwfc  q3_L, F
+    addwfc  q3_H, F
     return
     
 handle_q3_negative
@@ -251,7 +266,7 @@ handle_q4_positive
     movlw   0x01
     addwf   q4_L, F
     movlw   0x00
-    addwfc  q4_L, F
+    addwfc  q4_H, F
     return
     
 handle_q4_negative

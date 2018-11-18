@@ -5,6 +5,7 @@
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out
     extern  player_score, draw_player, level2_table
+    extern  player_score_L, player_score_H
     
 acs0	    udata_acs			; named variables in access ram	
 destroy_store	res 1
@@ -70,15 +71,23 @@ move_up
 	addwf	player_gridhex, 1	; store new position in F
 	movf	player_gridhex, W
 	movff	PLUSW1, grid_value_out
+	
 	call	check_item_pickup
 	call	check_fire
 	call	check_goal
+	
 	movlw	move_penalty
-	addwf	player_score
+	addwf	player_score, F
 	movlw	move_penalty_L
 	addwf	reward_L, F
 	movlw	move_penalty_H
 	addwfc	reward_H, F
+	
+	movlw	move_penalty_L
+	addwf	player_score_L, F
+	movlw	move_penalty_H
+	addwfc	player_score_H, F
+	
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -96,12 +105,19 @@ move_down
 	call	check_item_pickup
 	call	check_fire
 	call	check_goal
+	
 	movlw	move_penalty
-	addwf	player_score
+	addwf	player_score, F
 	movlw	move_penalty_L
 	addwf	reward_L, F
 	movlw	move_penalty_H
 	addwfc	reward_H, F
+	
+	movlw	move_penalty_L
+	addwf	player_score_L, F
+	movlw	move_penalty_H
+	addwfc	player_score_H, F
+	
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -119,12 +135,19 @@ move_right
 	call	check_item_pickup
 	call	check_fire
 	call	check_goal
+	
 	movlw	move_penalty
-	addwf	player_score
+	addwf	player_score, F
 	movlw	move_penalty_L
 	addwf	reward_L, F
 	movlw	move_penalty_H
 	addwfc	reward_H, F
+	
+	movlw	move_penalty_L
+	addwf	player_score_L, F
+	movlw	move_penalty_H
+	addwfc	player_score_H, F
+	
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -142,12 +165,19 @@ move_left
 	call	check_item_pickup
 	call	check_fire
 	call	check_goal
+	
 	movlw	move_penalty
-	addwf	player_score
+	addwf	player_score, F
 	movlw	move_penalty_L
 	addwf	reward_L, F
 	movlw	move_penalty_H
 	addwfc	reward_H, F
+	
+	movlw	move_penalty_L
+	addwf	player_score_L, F
+	movlw	move_penalty_H
+	addwfc	player_score_H, F
+	
 	movlw	0x00
 	movwf	enable_bit
 	movlw	0x1B
@@ -173,8 +203,9 @@ check_goal
 	movlw	goal
 	xorwf	grid_value_out, 0	; Store result of XOR in W		
 	btfsc	STATUS, Z		; if collide with goal, do not skip
-	call	change_level		; collide with goal
+;	call	change_level		; collide with goal
 	return				; else return
+	return
 	
 change_level
 level2_
@@ -214,32 +245,35 @@ destroy_item
 	movff	destroy_store, PLUSW1
 	movlw	item_reward
 	movwf	reward_L
-	addwf	player_score
+	addwf	player_score, F
+	
+	movlw	item_reward
+	addwf	player_score_L, F
+	movlw	0x00
+	addwfc	player_score_H, F
+	
 	return
 	
 add_fire_penalty
 	clrf	reward_L
 	clrf	reward_H
 	movlw	fire_reward
-	addwf	player_score
+	addwf	player_score, F
 	movlw	fire_reward_L
 	addwf	reward_L, F
 	movlw	fire_reward_H
 	addwfc	reward_H, F
+	
+	movlw	fire_reward_L
+	addwf	player_score_L, F
+	movlw	fire_reward_H
+	addwfc	player_score_H, F
+	
 	return
 
 handle_D_button
 	movlw	0x01
 	movwf	gamestate
-	return
-	
-handle_overflow
-	movlw	0xFF
-	movwf	overflow_offset
-	movf	player_score, W
-	subwf	overflow_offset, W
-	movwf	player_score
-	incf	player_score
 	return
 	
 wall_penalty
@@ -249,6 +283,11 @@ wall_penalty
 	addwf	reward_L, F
 	movlw	move_penalty_H
 	addwfc	reward_H, F
+	
+	movlw	move_penalty_L
+	addwf	player_score_L, F
+	movlw	move_penalty_H
+	addwfc	player_score_H, F
 	return
 
     end

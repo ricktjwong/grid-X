@@ -12,4 +12,3 @@
     CONSTANT move_penalty_H = 0xFF
     CONSTANT fire_reward_L = 0xF9
     CONSTANT fire_reward_H = 0xFF
-    

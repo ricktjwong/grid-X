@@ -1,5 +1,6 @@
 #include p18f87k22.inc
 	global  draw_player, player_x, player_y, player_score, player_gridhex
+	global	player_score_L, player_score_H
 	extern	add_tiny_delay
 
 acs0	udata_acs
@@ -7,6 +8,8 @@ player_x    res 1
 player_y    res 1
 player_score res 1 
 player_gridhex res 1
+player_score_L res 1
+player_score_H res 1
 	
 player	code
 

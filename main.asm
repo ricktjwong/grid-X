@@ -5,7 +5,7 @@
 	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex
 	extern	level1_table, mapmatrix_level1, render_graphics, draw_endscreen
 	extern	player_score, display_score, q_table_level1, agent_learn
-	extern	add_long_delay
+	extern	add_long_delay, player_score_L, player_score_H
 	
 acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
@@ -61,6 +61,17 @@ level_select
 	goto	endscreen	; if == 4 , display end screen
 
 playscreen
+	clrf	player_score_L
+	clrf	player_score_H
+	movlw	0x1D
+	movwf	player_score
+	call	level1_table
+	call	mapmatrix_level1
+	movlw   0x1b
+	movwf   player_x
+	movwf   player_y
+	movlw	0x08
+	movwf	player_gridhex
 	call	agent_learn
 	call	draw_grids
 	call	draw_player
