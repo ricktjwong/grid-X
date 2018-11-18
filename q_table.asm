@@ -1,15 +1,15 @@
 #include p18f87k22.inc
 #include constants.inc
-    global  q_table_level1
+    global  q_table_7x7
     
 acs0	    udata_acs   ; named variables in access ram	
 initial_q_H   res 1
 initial_q_L   res 1   
 counter	      res 1
 	
-q_table1    code
+q_table7      code
 	    
-q_table_level1
+q_table_7x7
     movlw	0x64		    ; initial q_value for all state_actions
     movwf	initial_q_L	    ; is 100
     movlw	0x00		   

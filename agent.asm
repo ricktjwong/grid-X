@@ -5,6 +5,7 @@
     extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
     extern  find_max, q1_H, q2_H, q3_H, q4_H, q1_L, q2_L, q3_L, q4_L
     extern  current_max_H, q_max_H, q_max_L, reward_L, reward_H, display_score
+    extern  gamestate
     
 acs0		    udata_acs
 fsr_start	    res 1
@@ -25,10 +26,18 @@ q_agent	    code
 agent_learn
     call    display_score	    
     call    move
+    movlw   0x77
+    cpfseq  gamestate
+    goto    store_level2
     movlw   0x28
+ rejoin_learn   
     cpfseq  player_gridhex
     bra	    agent_learn
     return
+    
+store_level2
+    movlw   0x26
+    goto    rejoin_learn
     
 move
     call    get_action
@@ -167,26 +176,26 @@ q_learn
     cpfslt  state2_max_H
     call    convert_from_twos_comp
     
-    learning_rate_mul
-	incf	counter
-	bcf	STATUS, Z
-	rrcf	state2_max_H, F
-	rrcf	state2_max_L, F
-	movlw	0x02
-	cpfslt	counter
-	bra	learning_rate_mul
+learning_rate_mul
+    incf    counter
+    bcf	    STATUS, Z
+    rrcf    state2_max_H, F
+    rrcf    state2_max_L, F
+    movlw   0x02
+    cpfslt  counter
+    bra	    learning_rate_mul
 	
     movlw   0x01
     cpfseq  is_neg
     bra	    final_q_learn
     call    convert_to_twos_comp
     
-    ; *** D = C + qvalue_state1_action (in 2's complement)		   *** ;
-    final_q_learn
-	movf    state1_max_L, W			; add state1 max low byte to the
-	addwf   state2_max_L, F			; low byte of A
-	movf    state1_max_H, W			; add state1 max high byte to
-	addwfc  state2_max_H, F			; high byte of A
+; *** D = C + qvalue_state1_action (in 2's complement)		   *** ;
+final_q_learn
+    movf    state1_max_L, W			; add state1 max low byte to the
+    addwf   state2_max_L, F			; low byte of A
+    movf    state1_max_H, W			; add state1 max high byte to
+    addwfc  state2_max_H, F			; high byte of A
     
     movff   state2_max_L, state1_max_L
     movff   state2_max_H, state1_max_H

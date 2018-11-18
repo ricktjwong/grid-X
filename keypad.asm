@@ -3,7 +3,8 @@
 
     global  keypad_checks, final_hex
     extern  add_tiny_delay, enable_bit, player_gridhex
-    extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
+    extern  third_check_up, third_check_down, third_check_left, third_check_right
+    extern  handle_D_button, q_learning_mode, q_learning_mode_2
 
 acs0		udata_acs		; reserve data space in access ram
 hashmap		res 1
@@ -83,6 +84,20 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	handle_D_button
+	return
+	
+	movff	final_hex, PORTH
+	movlw	0x7E
+	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
+	btfsc	STATUS, Z
+	call	q_learning_mode
+	return
+	
+	movff	final_hex, PORTH
+	movlw	0xBE
+	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
+	btfsc	STATUS, Z
+	call	q_learning_mode_2
 	return
 
 	return

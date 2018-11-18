@@ -32,6 +32,7 @@
           <itemPath>item.asm</itemPath>
           <itemPath>grids.asm</itemPath>
           <itemPath>goal.asm</itemPath>
+          <itemPath>fire.asm</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="splash_screens" projectFiles="true">
           <itemPath>startscreen.asm</itemPath>
@@ -56,6 +57,7 @@
       <itemPath>constants.inc</itemPath>
       <itemPath>agent.asm</itemPath>
       <itemPath>actions.asm</itemPath>
+      <itemPath>findmax.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -76,10 +78,10 @@
         <targetDevice>PIC18F87K22</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD3PlatformTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>MPASMWIN</languageToolchain>
         <languageToolchainVersion>5.81</languageToolchainVersion>
-        <platform>3</platform>
+        <platform>4</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.0.40"/>

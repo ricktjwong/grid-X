@@ -1,7 +1,7 @@
 #include p18f87k22.inc
 #include constants.inc
     global  third_check_up, third_check_down, third_check_left, third_check_right
-    global  handle_D_button, reward_L, reward_H
+    global  handle_D_button, reward_L, reward_H, q_learning_mode, q_learning_mode_2
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out
     extern  player_score, draw_player, level2_table
@@ -200,12 +200,17 @@ check_item_pickup
 	return
 	
 check_goal
-	movlw	goal
+	movlw	0x77
+	cpfseq	gamestate
+	goto	normal
+	goto	iter
+normal	movlw	goal
 	xorwf	grid_value_out, 0	; Store result of XOR in W		
 	btfsc	STATUS, Z		; if collide with goal, do not skip
-;	call	change_level		; collide with goal
+	call	change_level		; collide with goal
 	return				; else return
-	return
+iter	
+	return				; return for qlearning mode
 	
 change_level
 level2_
@@ -273,6 +278,16 @@ add_fire_penalty
 
 handle_D_button
 	movlw	0x01
+	movwf	gamestate
+	return
+	
+q_learning_mode
+	movlw	0x77
+	movwf	gamestate
+	return
+	
+q_learning_mode_2
+	movlw	0x78
 	movwf	gamestate
 	return
 	
