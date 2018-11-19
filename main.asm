@@ -22,6 +22,8 @@ main	code
 	
 	; ******* Programme Setup Code ***********************
 setup	
+	clrf	TRISB
+	clrf	PORTB
 	movlw	0x04
 	movwf	enable_bit
 	movlw   0x1b
@@ -38,19 +40,25 @@ setup
 	
 	; ******* Main programme ****************************************
 start 	
+	movlw   0x1b
+	movwf   player_x
+	movwf   player_y
+	movlw	0x08
+	movwf	player_gridhex
+	movlw	0x1D
+	movwf	player_score
 	call	level1_table
 	call	mapmatrix_level1
 	call	start_int	
 	
 begin
+	;movff	gamestate, PORTB
 	movlw	0x00
 	cpfseq	gamestate	; check if it is in gamestate 0 (start screen)
 	goto	main_game
 	goto	startscreen
 	
 startscreen
-	movlw	0x77
-	movwf	gamestate
 	call	display_start_screen
 	movlw	0x77
 	cpfseq	gamestate
@@ -114,11 +122,11 @@ iter2	clrf	player_score_L
 	movlw	0x00
 	cpfseq	gamestate
 	goto	iter2
-	goto	begin
+	goto	start
 	
 check_qlearning_level_2
 	movlw	0x78
 	cpfseq	gamestate
-	goto	begin	
+	goto	start	
 	goto	qlearning_level_2
 	end

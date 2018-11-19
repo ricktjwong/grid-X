@@ -280,6 +280,7 @@ add_fire_penalty
 handle_D_button
 	movlw	0x01
 	movwf	gamestate
+	movff	0x0F, PORTB
 	return
 	
 q_learning_mode

@@ -84,6 +84,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	handle_D_button
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH
@@ -91,6 +92,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	q_learning_mode
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH
@@ -98,6 +100,8 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	q_learning_mode_2
+	btfsc	STATUS, Z
+	return
 	
 	movff	final_hex, PORTH
 	movlw	0x77
