@@ -10,12 +10,14 @@ acs0		udata_acs		; reserve data space in access ram
 hashmap		res 1
 final_hex	res 1
 tmp_gridvalue	res 1
+tmp_element	res 1
 
 keypad_editor		code
 		
 editor_keypad
 	banksel	PADCFG1			; PADCFG1 is not in Access Bank
-	bsf	PADCFG1, RJPU, BANKED	; PortE pull-ups on			
+	bsf	PADCFG1, RJPU, BANKED	; PortE pull-ups on	
+	movff	player_gridhex, PORTB
 	call	keypad_input
 	call	checkdown
 rejoin    
@@ -50,7 +52,7 @@ checkdown
 ; Checks for button-press-down for : 2,4,6,8,1. Calls second check to prevent
 ; microprocessor from registering multiple presses with enable bit.
 ; Also checks for A,B,C,D,#,0 but without second checks (not needed)
-	movff	final_hex, PORTH
+	movff	final_hex, PORTH	; UP
 	movlw	0xB7
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
@@ -58,7 +60,7 @@ checkdown
 	btfsc	STATUS, Z
 	return
 
-	movff	final_hex, PORTH
+	movff	final_hex, PORTH	; DOWN
 	movlw	0xBD
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
@@ -66,15 +68,15 @@ checkdown
 	btfsc	STATUS, Z
 	return
 
-	movff	final_hex, PORTH
-	movlw	0xDB
+	movff	final_hex, PORTH	; RIGHT
+	movlw	0xDB	
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	bra	second_check_right
 	btfsc	STATUS, Z
 	return
 
-	movff	final_hex, PORTH
+	movff	final_hex, PORTH	; LEFT
 	movlw	0x7B
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
@@ -87,6 +89,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	destroy
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH	; B button
@@ -94,6 +97,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	place_wall
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH	; C button
@@ -101,6 +105,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	place_item
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH	; D button
@@ -108,6 +113,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	place_goal
+	btfsc	STATUS, Z
 	return
 
 	movff	final_hex, PORTH	; # button
@@ -115,6 +121,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	place_fire
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH	; 0 button
@@ -122,6 +129,7 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	set_gamestate1
+	btfsc	STATUS, Z
 	return
 	
 	movff	final_hex, PORTH	; 7 button (currently redundant)
@@ -282,28 +290,38 @@ Actions
 ; Actions performed by the map editor to place walls, items, goal(s) etc.
 ; Press button 1 to revert to play mode (gamestate 1).
 destroy					; A button
-	movlw	0x00		    
-	movff	player_gridhex, PLUSW1
+	movlw	0x00
+	movwf	tmp_element
+	movf	player_gridhex, W
+	movff	tmp_element, PLUSW1
 	return
 	
 place_wall				; B button
 	movlw	wall
-	movff	player_gridhex, PLUSW1
+	movwf	tmp_element
+	movf	player_gridhex, W
+	movff	tmp_element, PLUSW1
 	return
 
 place_item				; C button
 	movlw	item
-	movff	player_gridhex, PLUSW1
+	movwf	tmp_element
+	movf	player_gridhex, W
+	movff	tmp_element, PLUSW1
 	return
 	   
 place_goal				; D button
 	movlw	goal
-	movff	player_gridhex, PLUSW1
+	movwf	tmp_element
+	movf	player_gridhex, W
+	movff	tmp_element, PLUSW1
 	return
 	
 place_fire				; # button
 	movlw	fire
-	movff	player_gridhex, PLUSW1
+	movwf	tmp_element
+	movf	player_gridhex, W
+	movff	tmp_element, PLUSW1
 	return
 	
 set_gamestate1				; 0 button

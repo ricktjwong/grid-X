@@ -90,7 +90,7 @@ checkdown
 	btfsc	STATUS, Z
 	return
 	
-	movff	final_hex, PORTH
+	movff	final_hex, PORTH	; * button enables AI (ML) mode
 	movlw	0x7E
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
@@ -106,18 +106,19 @@ checkdown
 	btfsc	STATUS, Z
 	return
 	
-	movff	final_hex, PORTH
+	movff	final_hex, PORTH	; 1 button for reset
 	movlw	0x77
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	return_to_begin
+	btfsc	STATUS, Z
 	return
 
-	movff	final_hex, PORTH	; 1 button
-	movlw	0x77
+	movff	final_hex, PORTH	; A button
+	movlw	0xE7
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
-	bra	second_check_1
+	bra	second_check_A
 	btfsc	STATUS, Z
 	return
 	
@@ -167,7 +168,7 @@ second_check_left
 	call	third_check_left
 	return
 
-second_check_1
+second_check_A
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
 	btfss	STATUS, Z
@@ -178,8 +179,8 @@ editor_mode
 	movlw	0xFF
 	movwf	gamestate	    ; Enable map editor mode
 	call	level_empty7	    ; populates map with an empty 7x7 space with boundaries
-	movlw	0x00
-	movwf	enable_bit	    
+;	movlw	0x00
+;	movwf	enable_bit	    
 	return
 	
     end

@@ -9,8 +9,8 @@ int_hi	code	0x0008		; high vector, no low vector
 	call	render_graphics
 	movlw	0xFF
 	cpfseq	gamestate	; Compare if gamestate = FF hex
-	bra	playmode	; if != 10	
-	bra	editor		; if == 10
+	bra	playmode	; if != FF	
+	bra	editor		; if == FF
 playmode
 	call	keypad_checks
 	goto	rejoin

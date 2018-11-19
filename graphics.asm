@@ -36,8 +36,16 @@ check_item
 
 check_wall
 	movlw	wall
-	xorwf	grid_value_out, 0	; Store result of XOR in W		
-	btfsc	STATUS, Z
+	cpfseq	grid_value_out		; compare if grid_value_out == wall
+	bra	check_boundary		; if != wall    
+	goto	set_wall_xy		; if == wall
+check_boundary
+	movlw	boundary
+	cpfseq	grid_value_out
+	bra	check_fire		; if != boundary (and != wall)
+	goto	set_wall_xy		; if == boundary
+	;xorwf	grid_value_out, 0	; Store result of XOR in W		
+	;btfsc	STATUS, Z
 	goto	set_wall_xy
 	
 check_fire
