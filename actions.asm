@@ -318,12 +318,6 @@ wall_penalty
 	movlw	move_penalty_H
 	addwfc	player_score_H, F
 	return
-
-handle_D_button				; Sets gamestate to 1
-	movlw	0x01
-	movwf	gamestate
-	return
-	
 	
 level_manager
 ; Called when win condition is detected. Uses gamestate to control flow of levels of the game
