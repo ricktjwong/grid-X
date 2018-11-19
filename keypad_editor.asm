@@ -1,50 +1,22 @@
 #include p18f87k22.inc
 #include constants.inc
-
     global  editor_keypad
     extern  add_tiny_delay, enable_bit, player_gridhex
     extern  player_x, player_y, player_gridhex, draw_player
-    extern  gamestate, editor_mode
+    extern  gamestate, editor_mode, final_hex, keypad_input
 
 acs0		udata_acs		; reserve data space in access ram
-hashmap		res 1
-final_hex	res 1
 tmp_gridvalue	res 1
 tmp_element	res 1
 
 keypad_editor		code
 		
 editor_keypad
-	banksel	PADCFG1			; PADCFG1 is not in Access Bank
-	bsf	PADCFG1, RJPU, BANKED	; PortE pull-ups on	
 	call	keypad_input
 	call	checkdown
 rejoin    
 	call	keypad_input
 	call	checkup
-	return
-		
-keypad_input	
-	clrf	LATH			; Clear latch
-	clrf	LATJ			; Clear latch
-	movlw	0x0F			; 00001111 - 0 sets outputs, 1 as inputs
-	movwf	TRISJ, ACCESS
-	movlw	0x00
-	movwf	TRISH, ACCESS
-
-	movlw	0xFF
-	call	add_tiny_delay
-
-	movff	PORTJ, final_hex
-	clrf	LATJ			; Clear latch
-	movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
-	movwf	TRISJ, ACCESS
-	
-	movlw	0xFF
-	call	add_tiny_delay
-
-	movf	PORTJ, W
-	addwf	final_hex, 1		;  Store in final_hex
 	return
     
 checkdown
@@ -154,7 +126,7 @@ checkup
 	
 	return
 	
-SecondChecks	
+SecondChecks 	
 second_check_up
 	movf	STATUS, W
 	andwf	enable_bit, 0		; if TRUE AND TRUE, Z bit is 0 else 1
@@ -260,7 +232,6 @@ undo_move_left
 	addwf	player_gridhex, F
 	call	draw_player
 	return
-
 	
 move_right
 	movlw	0x00
@@ -283,7 +254,6 @@ undo_move_right
 	subwf	player_gridhex, F
 	call	draw_player
 	return
-
 	
 Actions
 ; Actions performed by the map editor to place walls, items, goal(s) etc.
@@ -329,6 +299,3 @@ set_gamestate1				; 0 button
 	return
 	
     end
-
-
-

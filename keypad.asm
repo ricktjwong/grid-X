@@ -1,50 +1,20 @@
 #include p18f87k22.inc
 #include constants.inc
-
-    global  keypad_checks, final_hex, editor_mode
+    global  keypad_checks, editor_mode
     extern  add_tiny_delay, enable_bit, player_gridhex
-    extern  handle_D_button, q_learning_mode, q_learning_mode_2, return_to_begin
-    extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
-    extern  gamestate, level_empty7, q_learning_mode_3
-    
-acs0		udata_acs		; reserve data space in access ram
-hashmap		res 1
-final_hex	res 1
-new_gridhex	res 1
+    extern  q_learning_mode, q_learning_mode_2, q_learning_mode_3
+    extern  third_check_up, third_check_down, third_check_left, third_check_right
+    extern  gamestate, level_empty7, return_to_begin, keypad_input, final_hex
+    extern  handle_D_button
 
 keypad		code
 		
 keypad_checks
-	banksel	PADCFG1			; PADCFG1 is not in Access Bank
-	bsf	PADCFG1, RJPU, BANKED	; PortE pull-ups on			
 	call	keypad_input
 	call	checkdown
 rejoin    
 	call	keypad_input
 	call	checkup
-	return
-		
-keypad_input	
-	clrf	LATH			; Clear latch
-	clrf	LATJ			; Clear latch
-	movlw	0x0F			; 00001111 - 0 sets outputs, 1 as inputs
-	movwf	TRISJ, ACCESS
-	movlw	0x00
-	movwf	TRISH, ACCESS
-
-	movlw	0xFF
-	call	add_tiny_delay
-
-	movff	PORTJ, final_hex
-	clrf	LATJ			; Clear latch
-	movlw	0xF0			; 11110000 - 0 sets outputs, 1 as inputs
-	movwf	TRISJ, ACCESS
-	
-	movlw	0xFF
-	call	add_tiny_delay
-
-	movf	PORTJ, W
-	addwf	final_hex, 1		;  Store in final_hex
 	return
     
 checkdown
