@@ -48,6 +48,11 @@
         <itemPath>level2.asm</itemPath>
         <itemPath>q_table.asm</itemPath>
         <itemPath>mapmatrix_level1.asm</itemPath>
+        <itemPath>mapmatrix7x7.asm</itemPath>
+        <itemPath>mapmatrix9x9.asm</itemPath>
+        <itemPath>level_empty7.asm</itemPath>
+        <itemPath>level3.asm</itemPath>
+        <itemPath>level4.asm</itemPath>
       </logicalFolder>
       <itemPath>config.asm</itemPath>
       <itemPath>main.asm</itemPath>
@@ -58,6 +63,7 @@
       <itemPath>agent.asm</itemPath>
       <itemPath>actions.asm</itemPath>
       <itemPath>findmax.asm</itemPath>
+      <itemPath>keypad_editor.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

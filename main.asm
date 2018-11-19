@@ -1,9 +1,9 @@
 #include p18f87k22.inc
 #include constants.inc
-	global	enable_bit, grid_iter, gamestate
+	global	enable_bit, grid_iter, gamestate, mapsize
 	extern	draw_grids, start_int
 	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex
-	extern	level1_table, mapmatrix_level1, render_graphics, draw_endscreen
+	extern	level1_table, mapmatrix7x7, render_graphics, draw_endscreen
 	extern	player_score, display_score, q_table_7x7, agent_learn
 	extern	add_long_delay, player_score_L, player_score_H
 	extern	level2_table
@@ -12,8 +12,8 @@ acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
 grid_iter    res 1
 gamestate    res 1
-has_loadedlevel	res 1
-  
+mapsize	     res 1
+
 rst	code	0    ; reset vector
 	goto	setup
 	
@@ -24,12 +24,14 @@ main	code
 setup	
 	movlw	0x04
 	movwf	enable_bit
-	movlw   0x1b
+	movlw	0x07
+	movwf	mapsize		    ; Square mapsize (xsize = ysize)
+	movlw   0x1B
 	movwf   player_x
 	movwf   player_y
-	movlw	0x08
-	movwf	player_gridhex
-	movlw	0x0
+	movlw	0x08		    
+	movwf	player_gridhex	    ; Starting gridhex location
+	movlw	0x00
 	movwf	grid_iter
 	movlw	0x1D
 	movwf	player_score
@@ -39,7 +41,7 @@ setup
 	; ******* Main programme ****************************************
 start 	
 	call	level1_table
-	call	mapmatrix_level1
+	call	mapmatrix7x7
 	call	start_int	
 	
 begin
@@ -81,7 +83,7 @@ iter	clrf	player_score_L
 	movlw	0x00
 	movwf	player_score
 	call	level1_table
-	call	mapmatrix_level1
+	call	mapmatrix7x7
 	movlw   0x1b
 	movwf   player_x
 	movwf   player_y
@@ -102,7 +104,7 @@ iter2	clrf	player_score_L
 	movlw	0x00
 	movwf	player_score
 	call	level2_table
-	call	mapmatrix_level1
+	call	mapmatrix7x7
 	movlw   0x51
 	movwf   player_x
 	movwf   player_y

@@ -30,7 +30,7 @@ agent_learn
     cpfseq  gamestate
     goto    store_level2
     movlw   0x28
- rejoin_learn   
+rejoin_learn   
     cpfseq  player_gridhex
     bra	    agent_learn
     return

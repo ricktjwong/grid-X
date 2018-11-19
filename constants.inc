@@ -2,7 +2,8 @@
     CONSTANT goal=0x02
     CONSTANT item=0x04
     CONSTANT fire=0x05
-    CONSTANT onevolt_hex=0x1b
+    CONSTANT boundary = 0x0F
+    CONSTANT onevolt_hex = 0x1b
     CONSTANT move_penalty = 0xFD
     CONSTANT item_reward = 0x0C
     CONSTANT goal_reward = 0x63
