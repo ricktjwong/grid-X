@@ -17,7 +17,6 @@ keypad_editor		code
 editor_keypad
 	banksel	PADCFG1			; PADCFG1 is not in Access Bank
 	bsf	PADCFG1, RJPU, BANKED	; PortE pull-ups on	
-	movff	player_gridhex, PORTB
 	call	keypad_input
 	call	checkdown
 rejoin    

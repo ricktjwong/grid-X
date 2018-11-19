@@ -24,20 +24,40 @@ is_neg		    res 1
 q_agent	    code
 	    
 agent_learn
+    tstfsz  gamestate
+    bra	    learn
+    return
+learn
     call    display_score	    
     call    move
     movlw   0x77
-    cpfseq  gamestate
-    goto    store_level2
+    cpfseq  gamestate		    ; Compare if gamestate == 0x77 (level 1)
+    bra	    check_23		    ; if != 0x77 (check for level 2 and 3)
+    bra	    learn_1		    ; if == 0x77 (learn level 1)
+learn_1
     movlw   0x28
+    goto    rejoin_learn
+
+check_23
+    movlw   0x78
+    cpfseq  gamestate		    ; Compare if gamestate == 0x78 (level 2)
+    bra	    check_3		    ; if != 0x78 (check for level 3)
+    bra	    learn_2		    ; if == 0x08 (learn level 2)
+learn_2
+    movlw   0x26
+    goto    rejoin_learn
+check_3
+    movlw   0x79
+    cpfseq  gamestate		    ; Compare if gamestate == 0x79 (level 3)
+    bra	    agent_learn		    ; if != 0x79 (loop to beginning)
+    bra	    learn_3	      	    ; if == 0x79 (learn level 3)
+learn_3
+    movlw   0x0C
+    goto    rejoin_learn
 rejoin_learn   
     cpfseq  player_gridhex
     bra	    agent_learn
     return
-
-store_level2
-    movlw   0x26
-    goto    rejoin_learn
     
 move
     call    get_action

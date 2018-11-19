@@ -44,10 +44,8 @@
       </logicalFolder>
       <logicalFolder name="f2" displayName="Tables" projectFiles="true">
         <itemPath>level1.asm</itemPath>
-        <itemPath>mapmatrix_level2.asm</itemPath>
         <itemPath>level2.asm</itemPath>
         <itemPath>q_table.asm</itemPath>
-        <itemPath>mapmatrix_level1.asm</itemPath>
         <itemPath>mapmatrix7x7.asm</itemPath>
         <itemPath>mapmatrix9x9.asm</itemPath>
         <itemPath>level_empty7.asm</itemPath>
@@ -84,10 +82,10 @@
         <targetDevice>PIC18F87K22</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>Simulator</platformTool>
+        <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>MPASMWIN</languageToolchain>
         <languageToolchainVersion>5.81</languageToolchainVersion>
-        <platform>4</platform>
+        <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.0.40"/>
@@ -101,7 +99,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>false</parseOnProdLoad>
+          <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>

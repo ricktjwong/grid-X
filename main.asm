@@ -6,7 +6,7 @@
 	extern	level1_table, mapmatrix7x7, render_graphics, draw_endscreen
 	extern	player_score, display_score, q_table_7x7, agent_learn
 	extern	add_long_delay, player_score_L, player_score_H
-	extern	level2_table
+	extern	level2_table, level3_table
 	
 acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
@@ -19,7 +19,6 @@ rst	code	0    ; reset vector
 	
 main	code
 
-	
 	; ******* Programme Setup Code ***********************
 setup	
 	clrf	TRISB
@@ -47,14 +46,14 @@ start
 	movwf   player_y
 	movlw	0x08
 	movwf	player_gridhex
-	movlw	0x1D
+	movlw	0x64
 	movwf	player_score
 	call	level1_table
 	call	mapmatrix7x7
 	call	start_int	
 	
 begin
-	;movff	gamestate, PORTB
+	movff	gamestate, PORTB
 	movlw	0x00
 	cpfseq	gamestate	; check if it is in gamestate 0 (start screen)
 	goto	main_game
@@ -82,7 +81,7 @@ playscreen
 
 endscreen
 	call	draw_endscreen
-	goto	setup
+	goto	begin
 	
 qlearning_level_1
 	call	q_table_7x7
@@ -103,7 +102,7 @@ iter	clrf	player_score_L
 	movlw	0x00
 	cpfseq	gamestate
 	goto	iter
-	goto	begin
+	goto	start
 	
 qlearning_level_2
 	call	q_table_7x7
@@ -126,9 +125,36 @@ iter2	clrf	player_score_L
 	goto	iter2
 	goto	start
 	
+qlearning_level_3
+	call	q_table_7x7
+iter3	clrf	player_score_L
+	clrf	player_score_H
+	movlw	0x00
+	movwf	player_score
+	call	level3_table
+	call	mapmatrix7x7
+	movlw   0x1B
+	movwf   player_x
+	movwf   player_y
+	movlw	0x08
+	movwf	player_gridhex
+	call	agent_learn
+	call	draw_grids
+	call	draw_player
+	movlw	0x00
+	cpfseq	gamestate
+	goto	iter3
+	goto	start	
+	
 check_qlearning_level_2
 	movlw	0x78
 	cpfseq	gamestate
-	goto	start	
+	goto	check_qlearning_level_3	
 	goto	qlearning_level_2
+	
+check_qlearning_level_3
+	movlw	0x79
+	cpfseq	gamestate
+	goto	start	
+	goto	qlearning_level_3	
 	end

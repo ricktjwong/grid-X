@@ -2,6 +2,7 @@
 #include constants.inc
     global  third_check_up, third_check_down, third_check_left, third_check_right
     global  handle_D_button, reward_L, reward_H, q_learning_mode, q_learning_mode_2
+    global  q_learning_mode_3
     global  return_to_begin
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out
@@ -111,7 +112,6 @@ move_up
 	
 	call	check_item_pickup
 	call	check_fire
-	call	check_goal
 	
 	movlw	move_penalty
 	addwf	player_score, F
@@ -130,6 +130,7 @@ move_up
 	movlw	0x1B
 	addwf	player_y, 1
 	call	draw_player
+	call	check_goal
 	return
 	
 move_down
@@ -142,7 +143,6 @@ move_down
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
 	call	check_fire
-	call	check_goal
 	
 	movlw	move_penalty
 	addwf	player_score, F
@@ -161,6 +161,7 @@ move_down
 	movlw	0x1B
 	subwf	player_y, 1
 	call	draw_player
+	call	check_goal
 	return
 	
 move_right
@@ -172,7 +173,6 @@ move_right
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
 	call	check_fire
-	call	check_goal
 	
 	movlw	move_penalty
 	addwf	player_score, F
@@ -191,6 +191,7 @@ move_right
 	movlw	0x1B
 	addwf	player_x, 1
 	call	draw_player
+	call	check_goal
 	return
 	
 move_left
@@ -202,7 +203,6 @@ move_left
 	movff	PLUSW1, grid_value_out
 	call	check_item_pickup
 	call	check_fire
-	call	check_goal
 	
 	movlw	move_penalty
 	addwf	player_score, F
@@ -221,6 +221,7 @@ move_left
 	movlw	0x1B
 	subwf	player_x, 1
 	call	draw_player
+	call	check_goal
 	return
 	
 check_fire
@@ -240,13 +241,23 @@ check_item_pickup
 check_goal
 	movlw	0x77
 	cpfseq	gamestate
-	goto	normal
+	goto	check_78
 	goto	iter
 normal	movlw	goal
 	xorwf	grid_value_out, 0	; Store result of XOR in W		
 	btfsc	STATUS, Z		; if collide with goal, do not skip
 	call	level_manager		; collide with goal
 	return				; else return
+check_78
+	movlw	0x78
+	cpfseq	gamestate
+	goto	check_79
+	goto	iter
+check_79
+	movlw	0x79
+	cpfseq	gamestate
+	goto	normal
+	goto	iter	
 iter	
 	return				; return for qlearning mode
 	
@@ -300,6 +311,11 @@ q_learning_mode_2
 	movwf	gamestate
 	return
 	
+q_learning_mode_3	
+	movlw	0x79
+	movwf	gamestate
+	return
+	
 return_to_begin
 	movlw	0x00
 	movwf	gamestate
@@ -334,6 +350,8 @@ level2_
 	movwf	gamestate		; set gamestate = 2 to move to level 2
 	movlw	0x07			; <-- change THIS VALUE for larger map
 	movwf	mapsize			; Explicitly store mapsize
+	movlw	0x64
+	movwf	player_score
 	call	level2_table		; Repopulate table with level2 values with FSR1
 	call	mapmatrix7x7		; Explicitly build mapmatrix for 7x7 map
 	
@@ -351,13 +369,15 @@ level3_
 	bra	level4_			; if != 2 then check for level 3 4 ...
 	movlw	0x03			; if = 2 (AND since collided with goal) 
 	movwf	gamestate		; set gamestate = 3 to move to level 3
-	movlw	0x09			; <-- change THIS VALUE for larger map
+	movlw	0x07			; <-- change THIS VALUE for larger map
 	movwf	mapsize			; Explicitly store mapsize
 	call	level3_table		; Repopulate table with level2 values with FSR1
-	call	mapmatrix9x9		; Explicitly build mapmatrix for 7x7 map
+	call	mapmatrix7x7		; Explicitly build mapmatrix for 7x7 map
 	
 	; Setting start positions (hexgrid and graphics)
-	movlw	0x10
+	movlw	0x64
+	movwf	player_score
+	movlw	0x08
 	movwf	player_gridhex		; Set player hexgrid position for level 2
 	movlw	0x1B
 	movwf	player_x		; Set player x graphics position 

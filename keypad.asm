@@ -5,7 +5,7 @@
     extern  add_tiny_delay, enable_bit, player_gridhex
     extern  handle_D_button, q_learning_mode, q_learning_mode_2, return_to_begin
     extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
-    extern  gamestate, level_empty7
+    extern  gamestate, level_empty7, q_learning_mode_3
     
 acs0		udata_acs		; reserve data space in access ram
 hashmap		res 1
@@ -103,6 +103,14 @@ checkdown
 	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
 	btfsc	STATUS, Z
 	call	q_learning_mode_2
+	btfsc	STATUS, Z
+	return
+	
+	movff	final_hex, PORTH
+	movlw	0xDE
+	xorwf	final_hex, 0		; subtract, store in W. Status bit Z 1 if same
+	btfsc	STATUS, Z
+	call	q_learning_mode_3
 	btfsc	STATUS, Z
 	return
 	

@@ -44,8 +44,6 @@ check_boundary
 	cpfseq	grid_value_out
 	bra	check_fire		; if != boundary (and != wall)
 	goto	set_wall_xy		; if == boundary
-	;xorwf	grid_value_out, 0	; Store result of XOR in W		
-	;btfsc	STATUS, Z
 	goto	set_wall_xy
 	
 check_fire
