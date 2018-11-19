@@ -284,6 +284,11 @@ add_fire_penalty
 	addwfc	player_score_H, F
 	
 	return
+
+handle_D_button
+	movlw	0x01
+	movwf	gamestate
+	return
 	
 q_learning_mode
 	movlw	0x77

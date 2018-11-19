@@ -34,7 +34,7 @@ rejoin_learn
     cpfseq  player_gridhex
     bra	    agent_learn
     return
-    
+
 store_level2
     movlw   0x26
     goto    rejoin_learn
