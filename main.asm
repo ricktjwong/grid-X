@@ -1,12 +1,12 @@
 #include p18f87k22.inc
 #include constants.inc
-	global	enable_bit, grid_iter, gamestate, mapsize
+	global	enable_bit, grid_iter, gamestate, mapsize, start
 	extern	draw_grids, start_int
 	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex
 	extern	level1_table, mapmatrix7x7, render_graphics, draw_endscreen
 	extern	player_score, display_score, q_table_7x7, agent_learn
-	extern	add_long_delay, player_score_L, player_score_H
-	extern	level2_table, level3_table
+	extern	add_long_delay, qlearning_level_1
+	extern	check_qlearning_level_2, check_qlearning_level_3
 	
 acs0	udata_acs   ; reserve data space in access ram
 enable_bit   res 1
@@ -55,7 +55,7 @@ start
 begin
 	movff	gamestate, PORTB
 	movlw	0x00
-	cpfseq	gamestate	; check if it is in gamestate 0 (start screen)
+	cpfseq	gamestate	    ; check if it is in gamestate 0 (start screen)
 	goto	main_game
 	goto	startscreen
 	
@@ -70,9 +70,9 @@ main_game
 level_select
 	call	display_score
 	movlw	0x04
-	cpfseq	gamestate	; check if gamestate  == 4
-	goto	playscreen	; else display playscreen
-	goto	endscreen	; if == 4 , display end screen
+	cpfseq	gamestate	    ; check if gamestate  == 4
+	goto	playscreen	    ; else display playscreen
+	goto	endscreen	    ; if == 4 , display end screen
 
 playscreen
 	call	draw_grids
@@ -82,79 +82,5 @@ playscreen
 endscreen
 	call	draw_endscreen
 	goto	begin
-	
-qlearning_level_1
-	call	q_table_7x7
-iter	clrf	player_score_L
-	clrf	player_score_H
-	movlw	0x00
-	movwf	player_score
-	call	level1_table
-	call	mapmatrix7x7
-	movlw   0x1b
-	movwf   player_x
-	movwf   player_y
-	movlw	0x08
-	movwf	player_gridhex
-	call	agent_learn
-	call	draw_grids
-	call	draw_player
-	movlw	0x00
-	cpfseq	gamestate
-	goto	iter
-	goto	start
-	
-qlearning_level_2
-	call	q_table_7x7
-iter2	clrf	player_score_L
-	clrf	player_score_H
-	movlw	0x00
-	movwf	player_score
-	call	level2_table
-	call	mapmatrix7x7
-	movlw   0x51
-	movwf   player_x
-	movwf   player_y
-	movlw	0x18
-	movwf	player_gridhex
-	call	agent_learn
-	call	draw_grids
-	call	draw_player
-	movlw	0x00
-	cpfseq	gamestate
-	goto	iter2
-	goto	start
-	
-qlearning_level_3
-	call	q_table_7x7
-iter3	clrf	player_score_L
-	clrf	player_score_H
-	movlw	0x00
-	movwf	player_score
-	call	level3_table
-	call	mapmatrix7x7
-	movlw   0x1B
-	movwf   player_x
-	movwf   player_y
-	movlw	0x08
-	movwf	player_gridhex
-	call	agent_learn
-	call	draw_grids
-	call	draw_player
-	movlw	0x00
-	cpfseq	gamestate
-	goto	iter3
-	goto	start	
-	
-check_qlearning_level_2
-	movlw	0x78
-	cpfseq	gamestate
-	goto	check_qlearning_level_3	
-	goto	qlearning_level_2
-	
-check_qlearning_level_3
-	movlw	0x79
-	cpfseq	gamestate
-	goto	start	
-	goto	qlearning_level_3	
+		
 	end
