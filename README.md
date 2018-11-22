@@ -2,14 +2,15 @@
 Grid game using the Microchip PIC18F87K22 microprocessor
 
 <pre>
-POINTS: ___
+Level 1
+Score: ___
 
   1 2 3 4 5 6 7
 1 W W W W W W W
-2 W I W - - G W
-3 W - W - - - W
-4 W - I F - - W
-5 W - - - - - W
+2 W - I - - G W
+3 W - - - - W W
+4 W W W W - - W
+5 W - I - W - W
 6 W X - - - - W
 7 W W W W W W W
 </pre>
@@ -27,4 +28,4 @@ Move the character X from the start point to the goal (G), accumulating as many 
 **Rules**:
 1. Each movement incurs a penalty of 3 points
 2. Each item (I) collected will gain you 9 points
-3. Walking into the fire (F) will lose you 6 points
+3. Walking into the fire (F) will lose you 10 points
