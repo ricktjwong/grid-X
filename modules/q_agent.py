@@ -20,10 +20,10 @@ class Agent():
         one is optimal
         """
         self.actions = actions
-        self.epsilon = 0.01
-        self.learning_rate = 0.01
-        self.discount_factor = 0.9
-        self.q_table = [[[0.0 for i in range(len(self.actions))]
+        self.epsilon = 0.00
+        self.learning_rate = 2 ** -1
+        self.discount_factor = 1.0
+        self.q_table = [[[100.0 for i in range(len(self.actions))]
                         for i in range(N_rows)]
                         for i in range(N_cols)]
 
@@ -41,7 +41,8 @@ class Agent():
             for i in range(len(state_actions)):
                 if state_actions[i] == max_value:
                     max_index_list.append(i)
-            action = random.choice(max_index_list)
+#            action = random.choice(max_index_list)
+            action = max_index_list[-1]
         return action
     
     def q_learn(self, reward, action, state, next_state):
