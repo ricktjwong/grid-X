@@ -8,52 +8,42 @@
 	extern	add_long_delay, qlearning_level_1
 	extern	check_qlearning_level_2, check_qlearning_level_3
 	
-acs0	udata_acs   ; reserve data space in access ram
+acs0	udata_acs		    ; reserve data space in access ram
 enable_bit   res 1
 grid_iter    res 1
 gamestate    res 1
 mapsize	     res 1
 
-rst	code	0    ; reset vector
+rst	code	0		    ; reset vector
 	goto	setup
 	
 main	code
 
 	; ******* Programme Setup Code ***********************
 setup	
-	clrf	TRISB
-	clrf	PORTB
 	movlw	0x04
 	movwf	enable_bit
 	movlw	0x07
 	movwf	mapsize		    ; Square mapsize (xsize = ysize)
-	movlw   0x1B
-	movwf   player_x
-	movwf   player_y
-	movlw	0x08		    
-	movwf	player_gridhex	    ; Starting gridhex location
 	movlw	0x00
 	movwf	grid_iter
-	movlw	0x1D
-	movwf	player_score
 	movlw	0x00
 	movwf	gamestate
 	
 	; ******* Main programme ****************************************
 start 	
-	movlw   0x1b
-	movwf   player_x
+	movlw   0x1B		    ; level 1 player initial x, y position for
+    	movwf   player_x	    ; drawing on the screen
 	movwf   player_y
 	movlw	0x08
-	movwf	player_gridhex
+	movwf	player_gridhex	    ; player gridhex start location
 	movlw	0x64
 	movwf	player_score
-	call	level1_table
+	call	level1_table	    ; initialise FSR for level 1 map elements
 	call	mapmatrix7x7
-	call	start_int	
+	call	start_int	    ; initialise the interrupt for keypad check
 	
 begin
-	movff	gamestate, PORTB
 	movlw	0x00
 	cpfseq	gamestate	    ; check if it is in gamestate 0 (start screen)
 	goto	main_game

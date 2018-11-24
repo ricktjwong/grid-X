@@ -33,7 +33,6 @@
           <itemPath>grids.asm</itemPath>
           <itemPath>goal.asm</itemPath>
           <itemPath>fire.asm</itemPath>
-          <itemPath>score.asm</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="splash_screens" projectFiles="true">
           <itemPath>startscreen.asm</itemPath>
@@ -41,6 +40,7 @@
         </logicalFolder>
         <itemPath>graphics.asm</itemPath>
         <itemPath>score_display.asm</itemPath>
+        <itemPath>score.asm</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Keypad" projectFiles="true">
         <itemPath>actions.asm</itemPath>
@@ -93,7 +93,7 @@
         <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>MPASMWIN</languageToolchain>
         <languageToolchainVersion>5.81</languageToolchainVersion>
-        <platform>3</platform>
+        <platform>4</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.0.40"/>
@@ -130,6 +130,7 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
