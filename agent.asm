@@ -1,11 +1,10 @@
 #include p18f87k22.inc
 #include constants.inc
     global  agent_learn
-    extern  player_gridhex
-    extern  third_check_up, third_check_down, third_check_left, third_check_right, handle_D_button
+    extern  player_gridhex, third_check_up, third_check_down, third_check_left
+    extern  third_check_right, handle_D_button, gamestate
     extern  find_max, q1_H, q2_H, q3_H, q4_H, q1_L, q2_L, q3_L, q4_L
     extern  current_max_H, q_max_H, q_max_L, reward_L, reward_H, display_score
-    extern  gamestate
     
 acs0		    udata_acs
 fsr_start	    res 1

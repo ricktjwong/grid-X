@@ -1,8 +1,8 @@
 #include p18f87k22.inc
 #include constants.inc
-    global  third_check_up, third_check_down, third_check_left, third_check_right
-    global  handle_D_button, reward_L, reward_H, q_learning_mode, q_learning_mode_2
-    global  q_learning_mode_3
+    global  third_check_up, third_check_down, third_check_left
+    global  third_check_right, handle_D_button, reward_L, reward_H
+    global  q_learning_mode, q_learning_mode_2, q_learning_mode_3
     global  return_to_begin
     extern  enable_bit, gamestate
     extern  player_x, player_y, player_gridhex, grid_value_out

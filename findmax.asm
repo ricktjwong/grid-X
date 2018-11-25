@@ -9,18 +9,16 @@ candidate_max_H	    res 1
 candidate_L	    res 1
 neg_count	    res 1
 neg_tmp		    res 1    
- 
-q1_H    res 1
-q2_H    res 1
-q3_H	res 1
-q4_H	res 1
-q1_L    res 1
-q2_L    res 1
-q3_L	res 1
-q4_L	res 1 
-
-q_max_H	res 1
-q_max_L	res 1
+q1_H		    res 1
+q2_H		    res 1
+q3_H		    res 1
+q4_H		    res 1
+q1_L		    res 1
+q2_L		    res 1
+q3_L		    res 1
+q4_L		    res 1 
+q_max_H		    res 1
+q_max_L		    res 1
      
 findmax	    code
 

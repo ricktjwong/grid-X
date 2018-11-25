@@ -20,7 +20,7 @@ iter	clrf	player_score_L
 	movwf	player_score
 	call	level1_table
 	call	mapmatrix7x7
-	movlw   0x1b
+	movlw   0x1B
 	movwf   player_x
 	movwf   player_y
 	movlw	0x08

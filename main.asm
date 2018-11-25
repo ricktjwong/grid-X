@@ -1,12 +1,12 @@
 #include p18f87k22.inc
 #include constants.inc
 	global	enable_bit, grid_iter, gamestate, mapsize, start
-	extern	draw_grids, start_int
-	extern	display_start_screen, draw_player, player_x, player_y, player_gridhex
-	extern	level1_table, mapmatrix7x7, render_graphics, draw_endscreen
-	extern	player_score, display_score, q_table_7x7, agent_learn
-	extern	add_long_delay, qlearning_level_1
-	extern	check_qlearning_level_2, check_qlearning_level_3
+	extern	draw_grids, start_int, display_start_screen
+	extern	draw_player, player_x, player_y, player_gridhex
+	extern	level1_table, mapmatrix7x7, draw_endscreen
+	extern	player_score, display_score, add_long_delay
+	extern	qlearning_level_1, check_qlearning_level_2
+	extern	check_qlearning_level_3
 	
 acs0	udata_acs		    ; reserve data space in access ram
 enable_bit   res 1

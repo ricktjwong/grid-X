@@ -33,6 +33,7 @@
           <itemPath>grids.asm</itemPath>
           <itemPath>goal.asm</itemPath>
           <itemPath>fire.asm</itemPath>
+          <itemPath>score.asm</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="splash_screens" projectFiles="true">
           <itemPath>startscreen.asm</itemPath>
@@ -40,7 +41,6 @@
         </logicalFolder>
         <itemPath>graphics.asm</itemPath>
         <itemPath>score_display.asm</itemPath>
-        <itemPath>score.asm</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Keypad" projectFiles="true">
         <itemPath>actions.asm</itemPath>
