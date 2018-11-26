@@ -19,7 +19,7 @@ rst	code	0		    ; reset vector
 	
 main	code
 
-	; ******* Programme Setup Code ***********************
+	; ******* Programme Setup Code **********************************
 setup	
 	movlw	0x04
 	movwf	enable_bit
