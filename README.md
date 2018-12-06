@@ -1,6 +1,13 @@
 # grid-X
 Grid game using the Microchip PIC18F87K22 microprocessor.
 
+### Demonstration of Q-learning using the microprocessor on three different levels
+One can observe that the algorithm converges to a steady state after a few iterations - the agent repeatedly takes the same path. These gifs were converted from screen recordings on the oscilloscope.
+
+Level 1                    |  Level 2                  |  Level 3
+:-------------------------:|:-------------------------:|:-------------------------:
+![Q-learning Level 1](https://github.com/ricktjwong/grid-X/blob/master/gifs/qlearning1.gif)  |  ![Q-learning Level 2](https://github.com/ricktjwong/grid-X/blob/master/gifs/qlearning2.gif)  | ![Q-learning Level 3](https://github.com/ricktjwong/grid-X/blob/master/gifs/qlearning3.gif) 
+
 ### Initialisation instructions
 ```
 $ git clone https://github.com/ricktjwong/grid-X.git
